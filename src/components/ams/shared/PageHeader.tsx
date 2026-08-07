@@ -22,14 +22,14 @@ export function PageHeader({
             "radial-gradient(70% 120% at 0% 0%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 60%), radial-gradient(50% 110% at 100% 0%, color-mix(in oklab, var(--color-accent-pink) 16%, transparent), transparent 65%)",
         }}
       />
-      <div className="relative grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4 sm:flex sm:flex-wrap sm:justify-between">
+      <div className="relative flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <div className="min-w-0">
           {kicker && (
             <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary/90">
               {kicker}
             </div>
           )}
-          <h1 className="mt-1 truncate text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">
+          <h1 className="mt-1 text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">
             {title}
           </h1>
           {description && (
@@ -38,7 +38,9 @@ export function PageHeader({
             </p>
           )}
         </div>
-        {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
+        {actions && <div className="flex flex-wrap items-center gap-2 sm:shrink-0">{actions}</div>}
+      </div>
+
       </div>
     </div>
   );
