@@ -340,7 +340,7 @@ html, body { color-scheme: dark; }
 @utility ring-rarity-epic { box-shadow: 0 0 0 1px var(--color-epic), 0 0 18px -4px var(--color-epic); }
 @utility ring-rarity-legendary { box-shadow: 0 0 0 1px var(--color-legendary), 0 0 20px -4px var(--color-legendary); }
 @utility ring-rarity-mythic { box-shadow: 0 0 0 1px var(--color-mythic), 0 0 24px -4px var(--color-mythic); }
-@utility border-gold { border-color: oklch(0.82 0.11 84 / 45%); }
+@utility border-gold { border-color: oklch(0.58 0.19 255 / 45%); }
 @utility text-gold-gradient {
   background: var(--gradient-trophy);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -349,8 +349,8 @@ html, body { color-scheme: dark; }
 @utility gold-frame {
   position: relative;
   background: var(--gradient-surface);
-  border: 1px solid oklch(0.82 0.11 84 / 30%);
-  box-shadow: var(--shadow-card), inset 0 1px 0 oklch(0.82 0.11 84 / 15%);
+  border: 1px solid oklch(0.58 0.19 255 / 30%);
+  box-shadow: var(--shadow-card), inset 0 1px 0 oklch(0.58 0.19 255 / 15%);
   border-radius: var(--radius-lg);
 }
 @utility award-3d { transition: transform 0.4s ease; }
@@ -476,16 +476,16 @@ html, body { color-scheme: dark; }
 @utility motion-skeleton {
   background: linear-gradient(
     90deg,
-    oklch(0.26 0.028 260) 0%,
-    oklch(0.34 0.034 260) 45%,
-    oklch(0.26 0.028 260) 90%
+    oklch(0.24 0.035 258) 0%,
+    oklch(0.30 0.035 258) 45%,
+    oklch(0.24 0.035 258) 90%
   );
   background-size: 220% 100%;
   animation: motion-shimmer 1.6s linear infinite;
   border-radius: var(--radius-md);
 }
 
-/* Card interaction: soft lift + gold rim, consistent everywhere */
+/* Card interaction: soft lift + primary rim, consistent everywhere */
 @utility motion-card {
   transition:
     transform var(--dur-base) var(--ease-enterprise),
@@ -493,8 +493,8 @@ html, body { color-scheme: dark; }
     border-color var(--dur-base) var(--ease-enterprise);
   &:hover {
     transform: translateY(-2px);
-    border-color: oklch(0.82 0.11 84 / 34%);
-    box-shadow: var(--shadow-card), 0 0 24px -10px oklch(0.82 0.11 84 / 45%);
+    border-color: oklch(0.58 0.19 255 / 34%);
+    box-shadow: var(--shadow-card), 0 0 24px -10px oklch(0.58 0.19 255 / 45%);
   }
 }
 
@@ -506,29 +506,29 @@ html, body { color-scheme: dark; }
 /* Refined scrollbars (enterprise polish) */
 @utility scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: oklch(0.82 0.11 84 / 28%) transparent;
+  scrollbar-color: oklch(0.58 0.19 255 / 28%) transparent;
   &::-webkit-scrollbar { width: 8px; height: 8px; }
   &::-webkit-scrollbar-track { background: transparent; }
   &::-webkit-scrollbar-thumb {
-    background: oklch(0.82 0.11 84 / 22%);
+    background: oklch(0.58 0.19 255 / 22%);
     border-radius: 999px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
-  &::-webkit-scrollbar-thumb:hover { background: oklch(0.82 0.11 84 / 40%); background-clip: content-box; }
+  &::-webkit-scrollbar-thumb:hover { background: oklch(0.58 0.19 255 / 40%); background-clip: content-box; }
 }
 
 @layer base {
-  * { scrollbar-width: thin; scrollbar-color: oklch(0.82 0.11 84 / 22%) transparent; }
+  * { scrollbar-width: thin; scrollbar-color: oklch(0.58 0.19 255 / 22%) transparent; }
   *::-webkit-scrollbar { width: 10px; height: 10px; }
   *::-webkit-scrollbar-track { background: transparent; }
   *::-webkit-scrollbar-thumb {
-    background: oklch(0.82 0.11 84 / 18%);
+    background: oklch(0.58 0.19 255 / 18%);
     border-radius: 999px;
     border: 3px solid transparent;
     background-clip: content-box;
   }
-  *::-webkit-scrollbar-thumb:hover { background: oklch(0.82 0.11 84 / 36%); background-clip: content-box; }
+  *::-webkit-scrollbar-thumb:hover { background: oklch(0.58 0.19 255 / 36%); background-clip: content-box; }
 }
 
 @media (prefers-reduced-motion: reduce) {
