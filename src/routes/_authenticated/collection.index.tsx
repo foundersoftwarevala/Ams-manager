@@ -21,7 +21,7 @@ function Page() {
   return (
     <div className="space-y-8 p-6 lg:p-8">
       <header>
-        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-amber-400/80">
+        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
           Software Vala · Signature Engine
         </div>
         <h1 className="mt-2 text-3xl font-semibold text-foreground lg:text-4xl">Signature Collections</h1>
@@ -31,8 +31,8 @@ function Page() {
           crystal cores, materials, edition and serial numbering.
         </p>
         <div className="mt-3 flex flex-wrap gap-4 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-2"><Crown className="h-4 w-4 text-amber-400" />{ROLES.length} roles</span>
-          <span className="inline-flex items-center gap-2"><Gem className="h-3.5 w-3.5 text-amber-400/70" />
+          <span className="inline-flex items-center gap-2"><Crown className="h-4 w-4 text-primary" />{ROLES.length} roles</span>
+          <span className="inline-flex items-center gap-2"><Gem className="h-3.5 w-3.5 text-primary/70" />
             {ROLES.length * CAREER_STAGES.length * COLLECTION_TYPES.length} collectible pieces
           </span>
         </div>

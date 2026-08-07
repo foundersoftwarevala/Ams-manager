@@ -57,7 +57,7 @@ export function ProgressionTimeline({
   }
 
   return (
-    <div className="p-6 lg:p-8 space-y-6">
+    <div className="space-y-6">
       <header
         className="rounded-2xl border p-8 relative overflow-hidden"
         style={{

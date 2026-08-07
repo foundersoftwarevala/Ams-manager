@@ -47,7 +47,7 @@ export function MuseumShowcase({ showcase }: { showcase: ShowcaseDef }) {
     <div className="space-y-6 p-6 lg:p-8">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-amber-400/80">
+          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
             Software Vala · {showcase.kicker}
           </div>
           <h1 className="mt-2 text-3xl font-semibold text-foreground lg:text-4xl">{showcase.title}</h1>
@@ -55,11 +55,11 @@ export function MuseumShowcase({ showcase }: { showcase: ShowcaseDef }) {
         </div>
         <div className="flex flex-col items-end gap-1.5 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-2">
-            <Landmark className="h-4 w-4 text-amber-400" />
+            <Landmark className="h-4 w-4 text-primary" />
             {showcase.collectionStyle} · {visible.length} of {ROLES.length} on display
           </span>
           <span className="inline-flex items-center gap-2">
-            <Layers3 className="h-3.5 w-3.5 text-amber-400/70" /> {showcase.material}
+            <Layers3 className="h-3.5 w-3.5 text-primary/70" /> {showcase.material}
           </span>
         </div>
       </header>

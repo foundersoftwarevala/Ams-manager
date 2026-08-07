@@ -112,7 +112,7 @@ function TicketPage() {
             ) : data.comments.map((c) => (
               <div key={c.id} className={`surface-card p-4 ${c.is_internal ? "ring-1 ring-amber-500/40" : ""}`}>
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="text-xs text-muted-foreground">{c.is_internal && <span className="inline-flex items-center gap-1 mr-2 text-amber-400"><ShieldAlert className="h-3 w-3" /> Internal</span>}{new Date(c.created_at).toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground">{c.is_internal && <span className="inline-flex items-center gap-1 mr-2 text-primary"><ShieldAlert className="h-3 w-3" /> Internal</span>}{new Date(c.created_at).toLocaleString()}</div>
                 </div>
                 <div className="text-sm whitespace-pre-wrap">{c.body}</div>
               </div>

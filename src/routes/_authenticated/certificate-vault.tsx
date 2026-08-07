@@ -35,18 +35,18 @@ function Page() {
   );
 
   return (
-    <div className="p-6 lg:p-8 space-y-6">
-      <header className="flex items-end justify-between flex-wrap gap-4">
+    <div className="space-y-6">
+      <header className="page-banner flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-amber-400/80">Certificate Vault</div>
-          <h1 className="mt-2 text-3xl lg:text-4xl font-semibold text-foreground">Premium 3D Certificate Collection</h1>
+          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-primary/80">Certificate Vault</div>
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">Premium 3D Certificate Collection</h1>
           <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
             Foil-embossed certificates with guilloché borders, wax seals and role-specific crests.
             Every certificate carries its own registry number and scannable QR verification.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <ScrollText className="h-4 w-4 text-amber-400" />
+          <ScrollText className="h-4 w-4 text-primary" />
           <span>{ROLES.length} certificates · {visible.length} shown</span>
         </div>
       </header>

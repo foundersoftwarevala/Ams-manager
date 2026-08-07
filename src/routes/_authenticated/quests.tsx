@@ -131,7 +131,7 @@ function QuestEditor({ quest }: { quest: QuestChain }) {
             </div>
             <h2 className="text-xl font-bold tracking-tight mt-1">{quest.name}</h2>
             {quest.description && <p className="text-sm text-muted-foreground mt-1 max-w-2xl">{quest.description}</p>}
-            {quest.season && <Badge variant="outline" className="mt-2 bg-amber-500/10 text-amber-300 border-amber-500/30">{quest.season}</Badge>}
+            {quest.season && <Badge variant="outline" className="mt-2 bg-amber-500/10 text-primary border-amber-500/30">{quest.season}</Badge>}
           </div>
           <Button variant="ghost" size="sm" className="text-rose-400 gap-1" onClick={() => { deleteQuest(quest.id); toast("Quest deleted"); }}>
             <Trash2 className="h-3.5 w-3.5" /> Delete chain
