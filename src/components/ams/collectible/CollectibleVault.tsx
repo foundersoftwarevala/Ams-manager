@@ -6,6 +6,8 @@ import { VaultToolbar } from "./VaultToolbar";
 import type { CelebrateKind } from "@/components/ams/effects/Celebration";
 import type { RoleSlug } from "@/lib/ams/roles";
 import { ROLES } from "@/lib/ams/roles";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
+
 
 interface Props {
   kicker: string;
