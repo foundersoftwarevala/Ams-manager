@@ -20,10 +20,10 @@ export const Route = createFileRoute("/_authenticated/role-showcase/")({
 
 function Page() {
   return (
-    <div className="p-6 lg:p-8 space-y-8">
+    <div className="space-y-8">
       <header>
-        <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-amber-400/80">Sovereign Wing</div>
-        <h1 className="mt-2 text-3xl lg:text-4xl font-semibold text-foreground">Role Showcase Rooms</h1>
+        <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-primary/80">Sovereign Wing</div>
+        <h1 className="mt-2 text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">Role Showcase Rooms</h1>
         <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
           Every profession, its own handcrafted world. Enter a room to see the full identity —
           cover banner, avatar frame, membership card, digital passport, trophies, medals,

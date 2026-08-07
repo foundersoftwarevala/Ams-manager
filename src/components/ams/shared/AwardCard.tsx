@@ -40,7 +40,7 @@ export function AwardCard({
         </div>
         <Icon className="h-4 w-4 shrink-0" style={{ color: meta.hue }} />
       </div>
-      <div className="relative grid h-36 place-items-center overflow-hidden rounded-md bg-black/20">
+      <div className="relative grid h-36 place-items-center overflow-hidden rounded-md bg-background/40">
         {award.media.model3dUrl ? (
           <img src={award.media.model3dUrl} alt={award.name} className="h-32 transition-transform group-hover:scale-105" />
         ) : (

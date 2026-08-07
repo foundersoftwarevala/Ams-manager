@@ -52,18 +52,18 @@ export const Route = createFileRoute("/_authenticated/trophy-gallery")({
 
 function Page() {
   return (
-    <div className="p-6 lg:p-8 space-y-8">
-      <header className="flex items-end justify-between flex-wrap gap-4">
+    <div className="space-y-8">
+      <header className="page-banner flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-amber-400/80">Museum Wing</div>
-          <h1 className="mt-2 text-3xl lg:text-4xl font-semibold text-foreground">Trophy Gallery</h1>
+          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-primary/80">Museum Wing</div>
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">Trophy Gallery</h1>
           <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
             A world-class collection of luxury trophies — one utterly unique identity per profession.
             Ultra-realistic materials, engraved nameplates, cinematic lighting and premium unlock sound.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-amber-400" />
+          <Sparkles className="h-4 w-4 text-primary" />
           <span>{ROLES.length} professions · {ROLES.length * 7} named trophies</span>
         </div>
       </header>

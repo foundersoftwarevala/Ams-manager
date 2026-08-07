@@ -63,10 +63,10 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
   const totalPieces = collections.reduce((n, c) => n + c.pieces.length, 0);
 
   return (
-    <div className="space-y-6 p-6 lg:p-8">
+    <div className="space-y-6">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-amber-400/80">
+          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
             Software Vala · {type.kicker}
           </div>
           <h1 className="mt-2 text-3xl font-semibold text-foreground lg:text-4xl">{type.title}</h1>
@@ -74,11 +74,11 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
         </div>
         <div className="flex flex-col items-end gap-1.5 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-2">
-            <Crown className="h-4 w-4 text-amber-400" />
+            <Crown className="h-4 w-4 text-primary" />
             {type.display}
           </span>
           <span className="inline-flex items-center gap-2">
-            <Gem className="h-3.5 w-3.5 text-amber-400/70" />
+            <Gem className="h-3.5 w-3.5 text-primary/70" />
             {totalUnlocked} of {totalPieces} pieces collected
           </span>
         </div>

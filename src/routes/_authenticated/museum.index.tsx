@@ -19,9 +19,9 @@ export const Route = createFileRoute("/_authenticated/museum/")({
 
 function Page() {
   return (
-    <div className="space-y-8 p-6 lg:p-8">
+    <div className="space-y-8">
       <header>
-        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-amber-400/80">
+        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
           Software Vala · Master Presentation Engine
         </div>
         <h1 className="mt-2 text-3xl font-semibold text-foreground lg:text-4xl">Museums &amp; Galleries</h1>

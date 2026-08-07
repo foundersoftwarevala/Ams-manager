@@ -28,7 +28,7 @@ function Page() {
 
   if (!def) {
     return (
-      <div className="space-y-4 p-6 lg:p-8">
+      <div className="space-y-4">
         <h1 className="text-2xl font-semibold text-foreground">Showcase not found</h1>
         <p className="text-sm text-muted-foreground">Choose one of the {SHOWCASES.length} museums below.</p>
         <div className="flex flex-wrap gap-2">
