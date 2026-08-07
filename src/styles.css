@@ -84,91 +84,87 @@
 :root {
   --radius: 0.75rem;
 
-  /* === EXACT PALETTE FROM REFERENCE (Award Ceremony) ===
-   * bg          #0a1220   deep navy-black
-   * surface     #1a2438   midnight panel
-   * elevated    #2a3a55   raised card
-   * gold        #c9a86a   antique champagne (primary)
-   * gold-bright #e8d29a   highlight
-   * bronze      #8c6f3e   deep secondary
-   * cream       #f0e8d6   foreground
-   */
+  /* === Creator's Launchpad palette — deep navy enterprise, blue primary === */
+  --background: oklch(0.19 0.035 258);
+  --foreground: oklch(0.98 0.005 250);
 
-  --background: oklch(0.13 0.025 255);
-  --foreground: oklch(0.93 0.025 88);
-  --surface: oklch(0.22 0.035 260);
-  --surface-elevated: oklch(0.32 0.04 260);
+  --surface: oklch(0.23 0.035 258);
+  --surface-foreground: oklch(0.98 0.005 250);
+  --surface-elevated: oklch(0.27 0.035 258);
 
-  --card: oklch(0.21 0.034 260);
-  --card-foreground: oklch(0.93 0.025 88);
-  --popover: oklch(0.24 0.036 260);
-  --popover-foreground: oklch(0.93 0.025 88);
+  --card: oklch(0.22 0.035 258);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.24 0.035 258);
+  --popover-foreground: oklch(0.98 0.005 250);
 
-  /* Antique champagne gold */
-  --primary: oklch(0.78 0.1 82);
-  --primary-foreground: oklch(0.13 0.025 255);
+  --primary: oklch(0.58 0.19 255);
+  --primary-foreground: oklch(0.99 0.005 250);
+  --primary-glow: oklch(0.66 0.17 250);
 
-  /* Burnished bronze */
-  --secondary: oklch(0.6 0.09 72);
-  --secondary-foreground: oklch(0.97 0.02 88);
+  --secondary: oklch(0.29 0.035 258);
+  --secondary-foreground: oklch(0.98 0.005 250);
 
-  --muted: oklch(0.26 0.028 260);
-  --muted-foreground: oklch(0.72 0.03 82);
-  --accent: oklch(0.32 0.045 255);
-  --accent-foreground: oklch(0.95 0.025 88);
+  --muted: oklch(0.27 0.03 258);
+  --muted-foreground: oklch(0.74 0.025 255);
+  --accent: oklch(0.32 0.05 255);
+  --accent-foreground: oklch(0.98 0.005 250);
 
-  --destructive: oklch(0.58 0.22 25);
-  --destructive-foreground: oklch(0.98 0.005 85);
-  --success: oklch(0.7 0.14 150);
-  --warning: oklch(0.84 0.13 85);
-  --info: oklch(0.7 0.1 230);
+  --accent-pink: oklch(0.70 0.12 300);
+  --accent-amber: oklch(0.83 0.14 85);
+  --accent-emerald: oklch(0.72 0.14 165);
 
-  --border: oklch(0.78 0.1 82 / 14%);
-  --input: oklch(0.28 0.035 260);
-  --ring: oklch(0.82 0.11 84);
+  --destructive: oklch(0.62 0.20 25);
+  --destructive-foreground: oklch(0.99 0.005 250);
+  --success: oklch(0.72 0.14 165);
+  --warning: oklch(0.83 0.14 85);
+  --info: oklch(0.66 0.17 250);
 
-  /* Achievement palette — all gilded variants */
-  --xp: oklch(0.78 0.1 82);
-  --trophy: oklch(0.86 0.085 88);
-  --rare: oklch(0.7 0.1 232);
-  --epic: oklch(0.66 0.16 295);
-  --legendary: oklch(0.78 0.1 82);
-  --mythic: oklch(0.66 0.22 18);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 11%);
+  --ring: oklch(0.58 0.19 255 / 55%);
 
-  --chart-1: oklch(0.86 0.085 88);
-  --chart-2: oklch(0.6 0.09 72);
-  --chart-3: oklch(0.78 0.1 82);
-  --chart-4: oklch(0.7 0.1 232);
-  --chart-5: oklch(0.45 0.08 75);
+  /* Achievement palette re-tuned to the enterprise spectrum */
+  --xp: oklch(0.72 0.14 165);
+  --trophy: oklch(0.83 0.14 85);
+  --rare: oklch(0.66 0.17 250);
+  --epic: oklch(0.70 0.12 300);
+  --legendary: oklch(0.83 0.14 85);
+  --mythic: oklch(0.66 0.20 18);
 
-  --sidebar: oklch(0.11 0.022 255);
-  --sidebar-foreground: oklch(0.92 0.025 88);
-  --sidebar-primary: oklch(0.78 0.1 82);
-  --sidebar-primary-foreground: oklch(0.13 0.025 255);
-  --sidebar-accent: oklch(0.21 0.034 260);
-  --sidebar-accent-foreground: oklch(0.95 0.025 88);
-  --sidebar-border: oklch(0.78 0.1 82 / 14%);
-  --sidebar-ring: oklch(0.82 0.11 84);
+  --chart-1: oklch(0.58 0.19 255);
+  --chart-2: oklch(0.66 0.17 250);
+  --chart-3: oklch(0.72 0.14 165);
+  --chart-4: oklch(0.83 0.14 85);
+  --chart-5: oklch(0.70 0.12 300);
 
-  /* Gradients — gold-on-navy luxury */
-  --gradient-xp: linear-gradient(90deg, oklch(0.6 0.09 72), oklch(0.86 0.085 88));
-  --gradient-primary: linear-gradient(135deg, oklch(0.88 0.09 90), oklch(0.6 0.09 70));
-  --gradient-trophy: linear-gradient(135deg, oklch(0.92 0.08 92), oklch(0.6 0.1 60));
-  --gradient-rarity-mythic: linear-gradient(135deg, oklch(0.66 0.22 18), oklch(0.66 0.16 295));
-  --gradient-surface: linear-gradient(180deg, oklch(0.24 0.036 260), oklch(0.16 0.028 258));
+  --sidebar: oklch(0.19 0.035 258);
+  --sidebar-foreground: oklch(0.98 0.005 250);
+  --sidebar-primary: oklch(0.58 0.19 255);
+  --sidebar-primary-foreground: oklch(0.99 0.005 250);
+  --sidebar-accent: oklch(0.23 0.035 258);
+  --sidebar-accent-foreground: oklch(0.98 0.005 250);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.58 0.19 255 / 55%);
 
-  --shadow-glow-primary: 0 0 28px -4px oklch(0.82 0.11 84 / 55%);
-  --shadow-glow-secondary: 0 0 24px -4px oklch(0.6 0.09 72 / 55%);
-  --shadow-glow-trophy: 0 0 32px -4px oklch(0.86 0.09 88 / 70%);
-  --shadow-glow-xp: 0 0 22px -4px oklch(0.78 0.1 82 / 55%);
+  --gradient-xp: linear-gradient(90deg, oklch(0.58 0.19 255), oklch(0.72 0.14 165));
+  --gradient-primary: linear-gradient(135deg, oklch(0.58 0.19 255), oklch(0.66 0.17 250));
+  --gradient-trophy: linear-gradient(135deg, oklch(0.66 0.17 250), oklch(0.70 0.12 300));
+  --gradient-rarity-mythic: linear-gradient(135deg, oklch(0.66 0.20 18), oklch(0.70 0.12 300));
+  --gradient-surface: linear-gradient(180deg, oklch(0.24 0.035 258), oklch(0.20 0.035 258));
+
+  --shadow-glow-primary: 0 0 28px -4px oklch(0.58 0.19 255 / 60%);
+  --shadow-glow-secondary: 0 0 24px -4px oklch(0.66 0.17 250 / 50%);
+  --shadow-glow-trophy: 0 0 32px -4px oklch(0.66 0.17 250 / 55%);
+  --shadow-glow-xp: 0 0 22px -4px oklch(0.72 0.14 165 / 50%);
   --shadow-card:
-    0 1px 0 0 oklch(0.82 0.11 84 / 10%) inset,
-    0 0 0 1px oklch(0.82 0.11 84 / 8%),
-    0 24px 50px -24px oklch(0 0 0 / 85%);
+    0 1px 0 0 oklch(1 0 0 / 0.04) inset,
+    0 20px 40px -20px oklch(0 0 0 / 0.6);
+  --shadow-hero: 0 30px 80px -30px oklch(0.55 0.25 295 / 0.55);
 }
 
 .dark {
-  /* same as :root — app is dark-only */
+  --background: oklch(0.19 0.035 258);
+  --foreground: oklch(0.98 0.005 250);
   color-scheme: dark;
 }
 
@@ -176,18 +172,135 @@ html, body { color-scheme: dark; }
 
 @layer base {
   * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); }
   body {
-    background:
-      radial-gradient(1100px 600px at 12% -8%, oklch(0.82 0.11 84 / 9%), transparent 60%),
-      radial-gradient(900px 500px at 92% 4%, oklch(0.6 0.09 72 / 7%), transparent 60%),
-      radial-gradient(700px 500px at 50% 105%, oklch(0.82 0.11 84 / 5%), transparent 70%),
-      linear-gradient(180deg, oklch(0.14 0.026 256) 0%, oklch(0.11 0.022 254) 100%);
+    background-image:
+      radial-gradient(60% 40% at 20% 0%, oklch(0.58 0.19 255 / 0.12), transparent 60%),
+      radial-gradient(50% 35% at 90% 10%, oklch(0.66 0.17 250 / 0.07), transparent 60%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
   }
   .font-mono, .tabular-nums { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 }
+
+/* ─────────────── Premium 3D icon buttons ─────────────── */
+@utility icon3d {
+  background-image:
+    linear-gradient(180deg, oklch(1 0 0 / 0.09), oklch(1 0 0 / 0.02) 45%, oklch(0 0 0 / 0.10)),
+    linear-gradient(var(--color-surface), var(--color-surface));
+  border: 1px solid var(--color-border);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.10) inset,
+    0 1px 2px 0 oklch(0 0 0 / 0.35);
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-primary) 40%, var(--color-border));
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.14) inset,
+      0 4px 10px -4px oklch(0 0 0 / 0.45);
+  }
+  &:active { box-shadow: 0 1px 3px 0 oklch(0 0 0 / 0.35) inset; }
+}
+
+@utility icon3d--accent {
+  background-image:
+    linear-gradient(180deg, oklch(1 0 0 / 0.20), oklch(1 0 0 / 0.02) 55%, oklch(0 0 0 / 0.12)),
+    linear-gradient(var(--color-primary), var(--color-primary));
+  border-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
+}
+
+@utility bento-card {
+  position: relative;
+  background-image:
+    linear-gradient(160deg, color-mix(in oklab, var(--color-primary) 7%, transparent), transparent 55%),
+    linear-gradient(var(--color-card), var(--color-card));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 350ms ease, border-color 350ms ease, transform 350ms ease;
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-primary) 35%, var(--color-border));
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.06) inset,
+      0 28px 60px -28px oklch(0 0 0 / 0.7),
+      0 0 34px -14px color-mix(in oklab, var(--color-primary) 70%, transparent);
+  }
+}
+
+@utility hero-surface {
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-glow) 100%);
+  color: var(--color-primary-foreground);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-hero);
+}
+
+/* ─────────────── Premium button system ─────────────── */
+@utility btn-premium {
+  isolation: isolate;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(110deg, transparent 25%, color-mix(in oklab, white 28%, transparent) 45%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  &:hover::after { transform: translateX(120%); }
+  & > * { position: relative; z-index: 2; }
+}
+
+@utility btn-glow {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-glow) 55%,
+    color-mix(in oklab, var(--color-accent-pink) 55%, var(--color-primary-glow)) 100%
+  );
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.22) inset,
+    0 0 0 1px color-mix(in oklab, var(--color-primary-glow) 40%, transparent),
+    0 10px 30px -12px color-mix(in oklab, var(--color-primary) 85%, transparent);
+  &:hover {
+    filter: saturate(1.08) brightness(1.05);
+    transform: translateY(-1px);
+  }
+  &:active { transform: translateY(0); }
+}
+
+@utility btn-outline-glow {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--color-primary) 70%, transparent),
+      transparent 45%,
+      color-mix(in oklab, var(--color-accent-pink) 55%, transparent)
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+  }
+  &:hover::before { opacity: 1; }
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 36px -18px color-mix(in oklab, var(--color-primary) 90%, transparent);
+  }
+}
+
 
 /* Accessibility tokens: consistent keyboard focus treatment across custom controls. */
 @utility focus-ring {
