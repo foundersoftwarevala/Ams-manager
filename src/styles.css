@@ -417,11 +417,6 @@ html, body { color-scheme: dark; }
 .collectible-rim { animation: collectible-rim 12s linear infinite; }
 .collectible-spot { animation: collectible-spot 4s ease-in-out infinite; }
 
-@font-face {
-  font-family: "Inter";
-  font-display: swap;
-  src: local("Inter");
-}
 
 /* ================================================================
  * ENTERPRISE MOTION SYSTEM
