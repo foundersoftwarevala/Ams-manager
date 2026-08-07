@@ -13,6 +13,8 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
+
 
 export interface KpiCard {
   label: string;
