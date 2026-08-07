@@ -184,6 +184,245 @@ export type Database = {
         }
         Relationships: []
       }
+      ams_attachments: {
+        Row: {
+          created_at: string
+          file_name: string
+          file_size: number
+          id: string
+          mime_type: string | null
+          ticket_id: string
+          uploader_id: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          file_size?: number
+          id?: string
+          mime_type?: string | null
+          ticket_id: string
+          uploader_id: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          file_size?: number
+          id?: string
+          mime_type?: string | null
+          ticket_id?: string
+          uploader_id?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ams_attachments_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "ams_tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ams_chat_messages: {
+        Row: {
+          author_id: string | null
+          body: string
+          bookmarked: boolean
+          channel: Database["public"]["Enums"]["ams_chat_channel"]
+          created_at: string
+          id: string
+          metadata: Json
+          pinned: boolean
+          role: string
+          ticket_id: string
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          bookmarked?: boolean
+          channel?: Database["public"]["Enums"]["ams_chat_channel"]
+          created_at?: string
+          id?: string
+          metadata?: Json
+          pinned?: boolean
+          role?: string
+          ticket_id: string
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          bookmarked?: boolean
+          channel?: Database["public"]["Enums"]["ams_chat_channel"]
+          created_at?: string
+          id?: string
+          metadata?: Json
+          pinned?: boolean
+          role?: string
+          ticket_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ams_chat_messages_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "ams_tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ams_comments: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          id: string
+          is_internal: boolean
+          ticket_id: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          id?: string
+          is_internal?: boolean
+          ticket_id: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          id?: string
+          is_internal?: boolean
+          ticket_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ams_comments_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "ams_tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ams_events: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          from_value: string | null
+          id: string
+          kind: Database["public"]["Enums"]["ams_event_kind"]
+          payload: Json
+          ticket_id: string
+          to_value: string | null
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          from_value?: string | null
+          id?: string
+          kind: Database["public"]["Enums"]["ams_event_kind"]
+          payload?: Json
+          ticket_id: string
+          to_value?: string | null
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          from_value?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["ams_event_kind"]
+          payload?: Json
+          ticket_id?: string
+          to_value?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ams_events_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "ams_tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ams_tickets: {
+        Row: {
+          assignee_id: string | null
+          category: string | null
+          closed_at: string | null
+          created_at: string
+          created_by: string
+          customer_id: string | null
+          deleted_at: string | null
+          department: string | null
+          description: string | null
+          expected_resolution_at: string | null
+          id: string
+          metadata: Json
+          priority: Database["public"]["Enums"]["ams_priority"]
+          product: string | null
+          resolved_at: string | null
+          status: Database["public"]["Enums"]["ams_status"]
+          subject: string
+          tags: string[]
+          team: string | null
+          ticket_no: string
+          updated_at: string
+        }
+        Insert: {
+          assignee_id?: string | null
+          category?: string | null
+          closed_at?: string | null
+          created_at?: string
+          created_by: string
+          customer_id?: string | null
+          deleted_at?: string | null
+          department?: string | null
+          description?: string | null
+          expected_resolution_at?: string | null
+          id?: string
+          metadata?: Json
+          priority?: Database["public"]["Enums"]["ams_priority"]
+          product?: string | null
+          resolved_at?: string | null
+          status?: Database["public"]["Enums"]["ams_status"]
+          subject: string
+          tags?: string[]
+          team?: string | null
+          ticket_no?: string
+          updated_at?: string
+        }
+        Update: {
+          assignee_id?: string | null
+          category?: string | null
+          closed_at?: string | null
+          created_at?: string
+          created_by?: string
+          customer_id?: string | null
+          deleted_at?: string | null
+          department?: string | null
+          description?: string | null
+          expected_resolution_at?: string | null
+          id?: string
+          metadata?: Json
+          priority?: Database["public"]["Enums"]["ams_priority"]
+          product?: string | null
+          resolved_at?: string | null
+          status?: Database["public"]["Enums"]["ams_status"]
+          subject?: string
+          tags?: string[]
+          team?: string | null
+          ticket_no?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       analytics_events: {
         Row: {
           created_at: string
@@ -1509,6 +1748,46 @@ export type Database = {
       is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
+      ams_chat_channel:
+        | "support"
+        | "developer"
+        | "qa"
+        | "boss"
+        | "ai"
+        | "customer"
+      ams_event_kind:
+        | "created"
+        | "updated"
+        | "status_changed"
+        | "assigned"
+        | "reassigned"
+        | "transferred"
+        | "commented"
+        | "internal_note"
+        | "escalated"
+        | "resolved"
+        | "closed"
+        | "reopened"
+        | "archived"
+        | "restored"
+        | "attachment_added"
+        | "attachment_removed"
+      ams_priority: "low" | "medium" | "high" | "critical"
+      ams_status:
+        | "draft"
+        | "submitted"
+        | "assigned"
+        | "accepted"
+        | "in_progress"
+        | "waiting_customer"
+        | "waiting_developer"
+        | "waiting_qa"
+        | "testing"
+        | "resolved"
+        | "closed"
+        | "reopened"
+        | "cancelled"
+        | "archived"
       app_role: "super_admin" | "admin" | "user"
       claim_status: "pending" | "approved" | "rejected" | "fulfilled"
       entity_status: "active" | "inactive" | "archived" | "draft"
@@ -1643,6 +1922,49 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      ams_chat_channel: [
+        "support",
+        "developer",
+        "qa",
+        "boss",
+        "ai",
+        "customer",
+      ],
+      ams_event_kind: [
+        "created",
+        "updated",
+        "status_changed",
+        "assigned",
+        "reassigned",
+        "transferred",
+        "commented",
+        "internal_note",
+        "escalated",
+        "resolved",
+        "closed",
+        "reopened",
+        "archived",
+        "restored",
+        "attachment_added",
+        "attachment_removed",
+      ],
+      ams_priority: ["low", "medium", "high", "critical"],
+      ams_status: [
+        "draft",
+        "submitted",
+        "assigned",
+        "accepted",
+        "in_progress",
+        "waiting_customer",
+        "waiting_developer",
+        "waiting_qa",
+        "testing",
+        "resolved",
+        "closed",
+        "reopened",
+        "cancelled",
+        "archived",
+      ],
       app_role: ["super_admin", "admin", "user"],
       claim_status: ["pending", "approved", "rejected", "fulfilled"],
       entity_status: ["active", "inactive", "archived", "draft"],
