@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_authenticated/collection/")({
 
 function Page() {
   return (
-    <div className="space-y-8 p-6 lg:p-8">
+    <div className="space-y-8">
       <header>
         <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
           Software Vala · Signature Engine
