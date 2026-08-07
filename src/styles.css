@@ -125,7 +125,7 @@
 
   /* Achievement palette re-tuned to the enterprise spectrum */
   --xp: oklch(0.72 0.14 165);
-  --trophy: oklch(0.83 0.14 85);
+  --trophy: oklch(0.66 0.17 250);
   --rare: oklch(0.66 0.17 250);
   --epic: oklch(0.70 0.12 300);
   --legendary: oklch(0.83 0.14 85);
