@@ -89,19 +89,20 @@ export function EngineDashboard({
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <header className="grid grid-cols-1 items-end gap-4 lg:flex lg:flex-wrap lg:justify-between">
-        <div className="min-w-0">
-          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{kicker}</div>
-          <h1 className="text-2xl font-bold tracking-tight text-gradient-primary sm:text-3xl">{title}</h1>
-          {description && <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{description}</p>}
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Button variant="outline" size="sm" sound="importComplete" className="gap-1.5"><Upload className="h-3.5 w-3.5" /> Import</Button>
-          <Button variant="outline" size="sm" sound="exportComplete" className="gap-1.5"><Download className="h-3.5 w-3.5" /> Export</Button>
-          <Button size="sm" className="gap-1.5"><Plus className="h-3.5 w-3.5" /> {primaryAction}</Button>
-        </div>
-      </header>
+      {/* Banner header */}
+      <PageHeader
+        kicker={kicker}
+        title={title}
+        description={description}
+        actions={
+          <>
+            <Button variant="outline" size="sm" sound="importComplete" className="gap-1.5"><Upload className="h-3.5 w-3.5" /> Import</Button>
+            <Button variant="outline" size="sm" sound="exportComplete" className="gap-1.5"><Download className="h-3.5 w-3.5" /> Export</Button>
+            <Button size="sm" className="gap-1.5"><Plus className="h-3.5 w-3.5" /> {primaryAction}</Button>
+          </>
+        }
+      />
+
 
       {/* KPI grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
