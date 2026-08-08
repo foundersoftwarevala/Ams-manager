@@ -164,8 +164,8 @@
 
 
 .dark {
-  --background: oklch(0.19 0.035 258);
-  --foreground: oklch(0.98 0.005 250);
+  --background: oklch(0.21 0.042 258);
+  --foreground: oklch(0.99 0.004 250);
   color-scheme: dark;
 }
 
@@ -176,8 +176,10 @@ html, body { color-scheme: dark; }
   html, body { background-color: var(--color-background); color: var(--color-foreground); }
   body {
     background-image:
-      radial-gradient(60% 40% at 20% 0%, oklch(0.58 0.19 255 / 0.12), transparent 60%),
-      radial-gradient(50% 35% at 90% 10%, oklch(0.66 0.17 250 / 0.07), transparent 60%);
+      radial-gradient(62% 42% at 18% -4%, oklch(0.615 0.215 258 / 0.20), transparent 62%),
+      radial-gradient(52% 36% at 92% 6%, oklch(0.72 0.145 300 / 0.12), transparent 64%),
+      radial-gradient(46% 30% at 50% 108%, oklch(0.70 0.185 250 / 0.10), transparent 70%);
+
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-display);
