@@ -18,13 +18,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-[var(--shadow-glow-primary)]",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        default:
+          "bg-[image:var(--gradient-primary)] bg-primary text-primary-foreground shadow-[0_1px_0_0_oklch(1_0_0/0.22)_inset,0_8px_20px_-10px_color-mix(in_oklab,var(--color-primary)_85%,transparent)] hover:-translate-y-px hover:brightness-110 hover:shadow-[var(--shadow-glow-primary)] active:translate-y-0",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-[0_1px_0_0_oklch(1_0_0/0.18)_inset,0_8px_18px_-10px_color-mix(in_oklab,var(--color-destructive)_80%,transparent)] hover:-translate-y-px hover:brightness-110 active:translate-y-0",
         outline:
-          "border border-border bg-muted/20 shadow-sm hover:bg-accent hover:text-accent-foreground hover:border-border",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent/70 hover:text-accent-foreground",
+          "border border-border bg-surface/70 text-foreground shadow-sm hover:-translate-y-px hover:bg-accent hover:text-accent-foreground hover:border-primary/45 active:translate-y-0",
+        secondary:
+          "bg-secondary text-secondary-foreground border border-border/60 shadow-sm hover:bg-surface-elevated hover:border-primary/35 hover:-translate-y-px active:translate-y-0",
+        ghost: "text-foreground/90 hover:bg-accent/70 hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline active:scale-100",
+
       },
       size: {
         default: "h-9 px-4 py-2",
