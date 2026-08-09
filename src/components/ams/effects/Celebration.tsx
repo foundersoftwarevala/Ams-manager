@@ -246,7 +246,7 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       secondaryTimers.forEach(clearTimeout);
     };
-  }, [payload.kind, rarity, meta.full, meta.burst, meta.rain, payload.kind]);
+  }, [payload.kind, rarity, meta.full, meta.burst, meta.rain, reduced]);
 
   // Auto dismiss
   useEffect(() => {
