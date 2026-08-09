@@ -9,6 +9,7 @@ import {
 } from "@/lib/celebrate";
 import { getSoundPrefs, playSound, type UiSound } from "@/lib/ams/ui-sound";
 import { AnimatedNumber } from "./AnimatedNumber";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 // ──────────────────────────────────────────────────────────────
 // Types
