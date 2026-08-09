@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 export function SectionTitle({ kicker, title, action }: { kicker?: string; title: string; action?: ReactNode }) {
   return (
