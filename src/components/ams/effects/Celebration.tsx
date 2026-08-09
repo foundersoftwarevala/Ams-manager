@@ -186,8 +186,10 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
   const particlesRef = useRef<P[]>([]);
   const rafRef = useRef<number | null>(null);
   const startedAt = useRef(performance.now());
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    if (reduced) return;
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext("2d"); if (!ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
