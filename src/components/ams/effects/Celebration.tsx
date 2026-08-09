@@ -8,6 +8,7 @@ import {
   playCoinDrop, playMythic, playRandom, playCertificate,
 } from "@/lib/celebrate";
 import { getSoundPrefs, playSound, type UiSound } from "@/lib/ams/ui-sound";
+import { AnimatedNumber } from "./AnimatedNumber";
 
 // ──────────────────────────────────────────────────────────────
 // Types
@@ -296,7 +297,7 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
           {typeof payload.xp === "number" && (
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold bg-[oklch(0.18_0.03_250)] px-4 py-1.5 text-xs">
               <Sparkles className="h-3.5 w-3.5 text-[#f5d77a]" />
-              <span className="font-semibold text-[#f5d77a]">+{payload.xp.toLocaleString()} XP</span>
+              <span className="font-semibold text-[#f5d77a]">+<AnimatedNumber value={payload.xp} duration={900} /> XP</span>
             </div>
           )}
 
