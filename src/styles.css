@@ -529,6 +529,19 @@ html, body { color-scheme: dark; }
   *::-webkit-scrollbar-thumb:hover { background: oklch(0.58 0.19 255 / 36%); background-clip: content-box; }
 }
 
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-reduced-motion="true"] .award-reveal { animation: none; }
+html[data-reduced-motion="true"] .trophy-highlight:hover { transform: none; }
+html[data-reduced-motion="true"] .trophy-highlight::after { animation: none !important; opacity: 0 !important; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
