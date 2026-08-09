@@ -1,9 +1,10 @@
-import { Volume2, Waves } from "lucide-react";
+import { Volume2, Waves, Play, Gauge } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useUiSound } from "@/hooks/use-ui-sound";
+import { useReducedMotion, setReducedMotionOverride } from "@/hooks/use-reduced-motion";
 import type { UiSound } from "@/lib/ams/ui-sound";
 
 const CUES: { label: string; sound: UiSound }[] = [
@@ -31,6 +32,7 @@ const CUES: { label: string; sound: UiSound }[] = [
 /** Workspace-level preferences for the enterprise motion + sound language. */
 export function MotionSoundPanel() {
   const { prefs, play, setEnabled, setVolume } = useUiSound();
+  const reduced = useReducedMotion();
 
   return (
     <section className="surface-card p-5 space-y-5" aria-labelledby="motion-sound-heading">
@@ -76,9 +78,35 @@ export function MotionSoundPanel() {
             onValueCommit={() => play("click")}
             aria-label="Interface sound volume"
           />
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full gap-1.5"
+            disabled={!prefs.enabled}
+            onClick={() => play("achievement")}
+          >
+            <Play className="h-3.5 w-3.5" /> Test achievement sound
+          </Button>
           <p className="text-[11px] text-muted-foreground">
-            Animations automatically soften when your system requests reduced motion.
+            Move the slider, then test to hear the level you picked.
           </p>
+
+          <div className="flex items-start justify-between gap-3 rounded-lg border border-border bg-muted/20 p-3">
+            <div className="min-w-0">
+              <Label htmlFor="settings-reduced-motion" className="text-xs font-medium">
+                <Gauge className="mr-1.5 inline h-3.5 w-3.5" /> Reduced motion
+              </Label>
+              <p className="mt-1 text-[11px] text-muted-foreground">
+                Turns off celebration, reveal and XP count-up animations. State changes still update instantly.
+              </p>
+            </div>
+            <Switch
+              id="settings-reduced-motion"
+              checked={reduced}
+              onCheckedChange={(v) => setReducedMotionOverride(v ? true : null)}
+              aria-label="Reduced motion"
+            />
+          </div>
         </div>
 
         <div className="space-y-2">

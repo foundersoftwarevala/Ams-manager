@@ -22,7 +22,9 @@ export function useReducedMotion(): boolean {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => {
       const override = readOverride();
-      setReduced(override ?? mq.matches);
+      const next = override ?? mq.matches;
+      setReduced(next);
+      document.documentElement.dataset["reducedMotion"] = next ? "true" : "false";
     };
     sync();
     mq.addEventListener?.("change", sync);

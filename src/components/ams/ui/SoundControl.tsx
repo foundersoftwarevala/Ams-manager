@@ -1,4 +1,4 @@
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
@@ -6,6 +6,7 @@ import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useUiSound } from "@/hooks/use-ui-sound";
+import { useReducedMotion, setReducedMotionOverride } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
 const SAMPLES = [
@@ -21,6 +22,7 @@ const SAMPLES = [
  */
 export function SoundControl({ className }: { className?: string }) {
   const { prefs, play, setEnabled, setVolume } = useUiSound();
+  const reduced = useReducedMotion();
   const Icon = prefs.enabled && prefs.volume > 0 ? Volume2 : VolumeX;
 
   return (
@@ -74,6 +76,29 @@ export function SoundControl({ className }: { className?: string }) {
             onValueChange={([v]) => setVolume((v ?? 0) / 100)}
             onValueCommit={() => play("click")}
             aria-label="Interface sound volume"
+          />
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full gap-1.5"
+            disabled={!prefs.enabled}
+            onClick={() => play("achievement")}
+          >
+            <Play className="h-3.5 w-3.5" /> Test sound at this volume
+          </Button>
+        </div>
+
+        <div className="flex items-start justify-between gap-3 border-t border-border pt-3">
+          <div className="min-w-0">
+            <div className="text-xs font-medium">Reduced motion</div>
+            <p className="text-[11px] text-muted-foreground">
+              Skip celebration, reveal and XP animations.
+            </p>
+          </div>
+          <Switch
+            checked={reduced}
+            onCheckedChange={(v) => setReducedMotionOverride(v ? true : null)}
+            aria-label="Reduced motion"
           />
         </div>
 

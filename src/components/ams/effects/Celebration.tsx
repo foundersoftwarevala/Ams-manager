@@ -9,6 +9,7 @@ import {
 } from "@/lib/celebrate";
 import { getSoundPrefs, playSound, type UiSound } from "@/lib/ams/ui-sound";
 import { AnimatedNumber } from "./AnimatedNumber";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 // ──────────────────────────────────────────────────────────────
 // Types
@@ -186,8 +187,10 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
   const particlesRef = useRef<P[]>([]);
   const rafRef = useRef<number | null>(null);
   const startedAt = useRef(performance.now());
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    if (reduced) return;
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext("2d"); if (!ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -243,7 +246,7 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       secondaryTimers.forEach(clearTimeout);
     };
-  }, [payload.kind, rarity, meta.full, meta.burst, meta.rain, payload.kind]);
+  }, [payload.kind, rarity, meta.full, meta.burst, meta.rain, reduced]);
 
   // Auto dismiss
   useEffect(() => {
@@ -263,28 +266,33 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
       className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden"
       style={{ background: meta.full ? "radial-gradient(ellipse at center, rgba(8,10,24,0.75), rgba(0,0,0,0.92))" : "radial-gradient(ellipse at center, rgba(8,10,24,0.55), rgba(0,0,0,0.75))", backdropFilter: "blur(8px)" }}
     >
-      <canvas ref={canvasRef} aria-hidden="true" className="pointer-events-none absolute inset-0" />
+      {!reduced && <canvas ref={canvasRef} aria-hidden="true" className="pointer-events-none absolute inset-0" />}
 
       {/* Spotlight rings */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="absolute h-[60vmin] w-[60vmin] rounded-full opacity-40 animate-[ams-pulse_2.4s_ease-out_infinite]" style={{ background: `radial-gradient(circle, ${ringColor}55 0%, transparent 60%)` }} />
-        <div className="absolute h-[40vmin] w-[40vmin] rounded-full opacity-60 animate-[ams-pulse_1.8s_ease-out_infinite]" style={{ background: `radial-gradient(circle, ${ringColor}88 0%, transparent 65%)`, animationDelay: "0.3s" }} />
-      </div>
+      {!reduced && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="absolute h-[60vmin] w-[60vmin] rounded-full opacity-40 animate-[ams-pulse_2.4s_ease-out_infinite]" style={{ background: `radial-gradient(circle, ${ringColor}55 0%, transparent 60%)` }} />
+          <div className="absolute h-[40vmin] w-[40vmin] rounded-full opacity-60 animate-[ams-pulse_1.8s_ease-out_infinite]" style={{ background: `radial-gradient(circle, ${ringColor}88 0%, transparent 65%)`, animationDelay: "0.3s" }} />
+        </div>
+      )}
 
       {/* Center card */}
-      <div className="relative z-10 mx-4 w-full max-w-md animate-[ams-pop_0.55s_cubic-bezier(.2,.9,.25,1.2)_both]">
+      <div className={`relative z-10 mx-4 w-full max-w-md${reduced ? "" : " animate-[ams-pop_0.55s_cubic-bezier(.2,.9,.25,1.2)_both]"}`}>
         <div className="relative overflow-hidden rounded-2xl border border-gold bg-[oklch(0.13_0.025_250)]/95 px-8 pb-7 pt-20 text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9),inset_0_1px_0_oklch(0.78_0.14_82/0.3)]">
           {/* Glint */}
-          <div className="pointer-events-none absolute inset-0" style={{
-            background: "linear-gradient(115deg, transparent 35%, rgba(255,243,196,0.25) 50%, transparent 65%)",
-            mixBlendMode: "screen",
-            animation: "ams-glint 2.6s ease-in-out infinite",
-          }} />
+          {!reduced && (
+            <div className="pointer-events-none absolute inset-0" style={{
+              background: "linear-gradient(115deg, transparent 35%, rgba(255,243,196,0.25) 50%, transparent 65%)",
+              mixBlendMode: "screen",
+              animation: "ams-glint 2.6s ease-in-out infinite",
+            }} />
+          )}
 
           {/* 3D award */}
           <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
             <div className="relative grid h-32 w-32 place-items-center rounded-full" style={{ background: `radial-gradient(circle, ${ringColor}44, transparent 70%)` }}>
-              <img src={meta.asset} alt="" className="award-3d h-28 w-28 drop-shadow-[0_10px_30px_rgba(245,215,122,0.6)]" />
+              <img src={meta.asset} alt="" className={`h-28 w-28 drop-shadow-[0_10px_30px_rgba(245,215,122,0.6)]${reduced ? "" : " award-3d"}`} />
+
             </div>
           </div>
 
