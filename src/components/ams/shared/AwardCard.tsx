@@ -27,7 +27,7 @@ export function AwardCard({
       to="/awards/$id"
       params={{ id: award.id }}
       className={cn(
-        "group surface-card motion-card relative flex flex-col gap-3 p-4",
+        "group surface-card motion-card award-reveal trophy-highlight focus-ring relative flex flex-col gap-3 p-4",
         className,
       )}
       style={{ boxShadow: meta.tier >= 5 ? `0 0 0 1px ${meta.hue}33, 0 18px 40px -22px ${meta.glow}` : undefined }}

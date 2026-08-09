@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 export function SectionTitle({ kicker, title, action }: { kicker?: string; title: string; action?: ReactNode }) {
   return (
@@ -45,11 +45,26 @@ export function StatCard({
 }
 
 export function ProgressBar({ pct, gradient = "var(--gradient-xp)" }: { pct: number; gradient?: string }) {
+  const target = Math.max(0, Math.min(100, pct));
+  const [width, setWidth] = useState(0);
+
+  // Animate from the previous value to the new one on every progression change.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setWidth(target));
+    return () => cancelAnimationFrame(id);
+  }, [target]);
+
   return (
-    <div className="h-2.5 w-full rounded-full bg-muted/60 overflow-hidden">
+    <div
+      className="h-2.5 w-full rounded-full bg-muted/60 overflow-hidden"
+      role="progressbar"
+      aria-valuenow={Math.round(target)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+    >
       <div
-        className="h-full rounded-full transition-[width] duration-700"
-        style={{ width: `${Math.max(0, Math.min(100, pct))}%`, background: gradient, boxShadow: "var(--shadow-glow-xp)" }}
+        className="h-full rounded-full transition-[width] duration-700 ease-[var(--ease-enterprise)] motion-reduce:transition-none"
+        style={{ width: `${width}%`, background: gradient, boxShadow: "var(--shadow-glow-xp)" }}
       />
     </div>
   );

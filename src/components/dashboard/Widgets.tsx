@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { SectionTitle, StatCard, ProgressBar, EmptyHint } from "./Primitives";
 import { cn } from "@/lib/utils";
+import { AnimatedNumber } from "@/components/ams/effects/AnimatedNumber";
 
 type Data = any; // shape matches getCommandCenter return
 
@@ -15,7 +16,7 @@ export function Row1Totals({ data }: { data: Data }) {
   const t = data.totals;
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-      <StatCard label="Total XP" value={fmt.format(t.xp)} sub="lifetime" icon={<Zap className="h-5 w-5" />} accent="xp" />
+      <StatCard label="Total XP" value={<AnimatedNumber value={t.xp} />} sub="lifetime" icon={<Zap className="h-5 w-5" />} accent="xp" />
       <StatCard label="Current Level" value={data.progression.currentLevel?.level_number ?? "—"} sub={data.progression.currentLevel?.name ?? "no levels yet"} icon={<ArrowUpCircle className="h-5 w-5" />} accent="primary" />
       <StatCard label="Current Rank" value={data.progression.currentRank?.name ?? "—"} sub={data.progression.currentRank ? `#${data.progression.currentRank.rank_number}` : "no ranks yet"} icon={<Crown className="h-5 w-5" />} accent="legendary" />
       <StatCard label="Achievements" value={`${t.achievementsEarned}/${t.achievementsCatalog}`} sub="unlocked / total" icon={<Trophy className="h-5 w-5" />} accent="trophy" />
@@ -31,7 +32,7 @@ export function Row2Progress({ data }: { data: Data }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
       <Card title="XP Progress" icon={<Zap className="h-4 w-4 text-xp" />}>
-        <div className="text-3xl font-bold tabular-nums text-gradient-primary">{fmt.format(data.totals.xp)}</div>
+        <div className="text-3xl font-bold tabular-nums text-gradient-primary"><AnimatedNumber value={data.totals.xp} duration={800} /></div>
         <div className="text-xs text-muted-foreground mt-1">total xp earned</div>
         <div className="mt-3"><ProgressBar pct={p.levelProgressPct} /></div>
       </Card>

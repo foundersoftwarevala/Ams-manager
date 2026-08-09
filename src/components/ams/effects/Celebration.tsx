@@ -1,13 +1,14 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { Crown, Trophy, Award, Sparkles, Star, Diamond, Gift } from "lucide-react";
+import { Crown, Trophy, Award, Sparkles, Star, Diamond, Gift, ScrollText } from "lucide-react";
 import trophy3d from "@/assets/trophy-3d.png";
 import medal3d from "@/assets/medal-3d.png";
 import badge3d from "@/assets/badge-3d.png";
 import {
   playWin, playRankUp, playLevelUp, playDiamond, playFireworks,
-  playCoinDrop, playMythic, playRandom,
+  playCoinDrop, playMythic, playRandom, playCertificate,
 } from "@/lib/celebrate";
-import { getSoundPrefs } from "@/lib/ams/ui-sound";
+import { getSoundPrefs, playSound, type UiSound } from "@/lib/ams/ui-sound";
+import { AnimatedNumber } from "./AnimatedNumber";
 
 // ──────────────────────────────────────────────────────────────
 // Types
@@ -15,7 +16,7 @@ import { getSoundPrefs } from "@/lib/ams/ui-sound";
 export type Rarity = "Common" | "Rare" | "Epic" | "Legendary" | "Mythic" | "Founder";
 export type CelebrateKind =
   | "achievement" | "rankUp" | "levelUp" | "badge" | "trophy"
-  | "milestone" | "firstSale" | "founder" | "surprise";
+  | "milestone" | "firstSale" | "founder" | "surprise" | "certificate";
 
 export interface CelebrationPayload {
   kind: CelebrateKind;
@@ -157,6 +158,25 @@ const KIND_META: Record<CelebrateKind, {
   firstSale:   { icon: Gift,     title: "First Sale",           rarity: "Epic",      rain: "coin",     burst: "coin",     asset: trophy3d,  sound: playCoinDrop,  full: true  },
   founder:     { icon: Crown,    title: "Founder Award",        rarity: "Founder",   rain: "diamond",  burst: "star",     asset: trophy3d,  sound: playMythic,    full: true  },
   surprise:    { icon: Sparkles, title: "Surprise Reward",      rarity: "Mythic",    rain: "confetti", burst: "confetti", asset: badge3d,   sound: playRandom,    full: false },
+  certificate: { icon: ScrollText, title: "Certificate Issued",  rarity: "Epic",      rain: "spark",    burst: "spark",    asset: medal3d,   sound: playCertificate, full: false },
+};
+
+/**
+ * Restrained UI cue layered under each celebration, routed through the
+ * shared sound system so the global mute / volume control applies.
+ * Nothing ever plays without an explicit in-app event.
+ */
+const UI_CUE: Record<CelebrateKind, UiSound> = {
+  achievement: "achievement",
+  rankUp: "trophy",
+  levelUp: "reward",
+  badge: "badge",
+  trophy: "trophy",
+  milestone: "reward",
+  firstSale: "reward",
+  founder: "trophy",
+  surprise: "reward",
+  certificate: "verified",
 };
 
 function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: () => void }) {
@@ -277,7 +297,7 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
           {typeof payload.xp === "number" && (
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold bg-[oklch(0.18_0.03_250)] px-4 py-1.5 text-xs">
               <Sparkles className="h-3.5 w-3.5 text-[#f5d77a]" />
-              <span className="font-semibold text-[#f5d77a]">+{payload.xp.toLocaleString()} XP</span>
+              <span className="font-semibold text-[#f5d77a]">+<AnimatedNumber value={payload.xp} duration={900} /> XP</span>
             </div>
           )}
 
@@ -298,7 +318,10 @@ export function CelebrationProvider({ children }: { children: React.ReactNode })
   const celebrate = useCallback((p: CelebrationPayload) => {
     setQueue((q) => [...q, p]);
     if (soundOn && getSoundPrefs().enabled) {
-      try { KIND_META[p.kind].sound(); } catch { /* ignore */ }
+      try {
+        KIND_META[p.kind].sound();
+        playSound(UI_CUE[p.kind]);
+      } catch { /* ignore */ }
     }
   }, [soundOn]);
 
@@ -314,6 +337,7 @@ export function CelebrationProvider({ children }: { children: React.ReactNode })
       rankUp:      "Rank Boost",
       firstSale:   "First Sale",
       founder:     "Founder Pick",
+      certificate: "Certificate Issued",
       surprise:    "Mystery Reward",
     };
     celebrate({ kind: k, title: titles[k], subtitle: "From the AMS surprise engine.", xp: 50 + Math.floor(Math.random() * 950) });

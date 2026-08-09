@@ -40,6 +40,7 @@ function EffectsPage() {
     { key: "trophy-unlock",title: "Trophy Unlock",     description: "Full-screen unveil.",          icon: Trophy,   run: () => celebrate({ kind: "trophy", title: "New Trophy", subtitle: "Trophy unlocked" }) },
     { key: "xp-pop",       title: "XP Pop",            description: "Floating XP gain.",            icon: Zap,      run: () => celebrate({ kind: "levelUp", title: "+250 XP", xp: 250 }) },
     { key: "reward-claim", title: "Reward Claim",      description: "Reward gift animation.",       icon: Gift,     run: () => celebrate({ kind: "achievement", title: "Reward Claimed", subtitle: "Sent to wallet" }) },
+    { key: "certificate",  title: "Certificate Issued", description: "Seal press + verify chime.", icon: AwardIcon, run: () => celebrate({ kind: "certificate", title: "Certificate Issued", subtitle: "Credential verified" }) },
     { key: "milestone",    title: "Milestone",         description: "Diamond cascade.",             icon: Crown,    run: () => celebrate({ kind: "milestone", title: "Milestone Reached" }) },
   ];
 
