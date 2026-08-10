@@ -408,11 +408,11 @@ html, body { color-scheme: dark; }
 /* Product-showcase orbit: the object stays recognizable at every frame —
    a controlled yaw swing with slight tilt and float, never a flat 360 flip. */
 @keyframes collectible-spin {
-  0%   { transform: perspective(1100px) rotateY(-17deg) rotateX(3deg) translateY(0); }
-  25%  { transform: perspective(1100px) rotateY(0deg)   rotateX(0deg) translateY(-6px); }
-  50%  { transform: perspective(1100px) rotateY(17deg)  rotateX(-3deg) translateY(0); }
-  75%  { transform: perspective(1100px) rotateY(0deg)   rotateX(0deg) translateY(-6px); }
-  100% { transform: perspective(1100px) rotateY(-17deg) rotateX(3deg) translateY(0); }
+  0%   { transform: translateY(1px) rotate(-1.2deg) scale(0.985); }
+  25%  { transform: translateY(-5px) rotate(0deg) scale(1); }
+  50%  { transform: translateY(0) rotate(1.2deg) scale(0.99); }
+  75%  { transform: translateY(-5px) rotate(0deg) scale(1); }
+  100% { transform: translateY(1px) rotate(-1.2deg) scale(0.985); }
 }
 
 @keyframes collectible-rim {

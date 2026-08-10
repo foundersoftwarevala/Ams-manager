@@ -150,7 +150,6 @@ export function Collectible3D({
                 className="h-full w-full object-contain"
                 style={{
                   filter: "drop-shadow(0 24px 28px color-mix(in oklab, black 72%, transparent)) contrast(1.06)",
-                  backfaceVisibility: "hidden",
                 }}
               />
               {animate && (
