@@ -22,7 +22,7 @@ interface Props {
 
 export function CollectibleVault({
   kicker, title, description, suffix, singular, assets,
-  unlockKind = "trophy", accent = "#facc15",
+  unlockKind = "trophy", accent,
 }: Props) {
   const [filter, setFilter] = useState<RoleFilterValue>("all");
   const visible = useMemo(
@@ -55,7 +55,7 @@ export function CollectibleVault({
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {visible.map((role) => (
-          <article key={role.slug} className="overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-primary/35">
+          <article key={role.slug} className="overflow-hidden rounded-lg border border-border bg-card shadow-[var(--shadow-card)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-primary/45 hover:shadow-[var(--shadow-glow-primary)]">
             <Collectible3D
               src={assets[role.slug]}
               filename={`${role.slug}-${suffix}.png`}
