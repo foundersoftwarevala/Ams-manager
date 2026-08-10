@@ -3,6 +3,7 @@ import { Download, RotateCw, Pause, Sparkles } from "lucide-react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCelebration, type CelebrateKind } from "@/components/ams/effects/Celebration";
 import { MuseumCase, SVMicroMark, SVSeal, svCollectionNumber } from "@/components/ams/brand/SVMark";
+import { Button } from "@/components/ui/button";
 
 /**
  * Ultra-premium 3D collectible viewer with:
@@ -101,17 +102,15 @@ export function Collectible3D({
   return (
     <div
       ref={wrapRef}
-      className="relative w-full rounded-2xl overflow-hidden border"
+      className="relative w-full overflow-hidden border-b border-border/70 bg-background"
       style={{
         height,
         perspective: "1200px",
-        borderColor: `${accent}55`,
         background: `
-          radial-gradient(120% 60% at 50% 0%, ${accent}22, transparent 60%),
-          radial-gradient(80% 50% at 50% 100%, ${accent}18, transparent 70%),
-          linear-gradient(180deg, #05070d 0%, #0a0f1a 55%, #050810 100%)
+          radial-gradient(70% 55% at 50% 10%, color-mix(in oklab, white 9%, transparent), transparent 72%),
+          linear-gradient(180deg, color-mix(in oklab, var(--card) 72%, black), color-mix(in oklab, var(--background) 82%, black))
         `,
-        boxShadow: `inset 0 0 60px ${accent}22, 0 30px 60px -30px ${accent}66`,
+        boxShadow: "inset 0 1px 0 color-mix(in oklab, white 10%, transparent)",
         contain: "content",
       }}
     >
@@ -122,43 +121,13 @@ export function Collectible3D({
         </div>
       ) : (
         <>
-          {animate && (
-            <div
-              className="pointer-events-none absolute inset-0 opacity-70 collectible-rim"
-              style={{
-                background: `conic-gradient(from 0deg, transparent, ${accent}55, transparent 30%, ${accent}33, transparent 60%, ${accent}66, transparent)`,
-                mixBlendMode: "screen",
-                filter: "blur(30px)",
-              }}
-            />
-          )}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-2/3"
+            className="pointer-events-none absolute inset-x-[18%] top-0 h-2/3 opacity-55"
             style={{
-              background: `radial-gradient(ellipse at 50% 0%, ${accent}44, transparent 60%)`,
+              background: "radial-gradient(ellipse at 50% 0%, color-mix(in oklab, white 18%, transparent), transparent 65%)",
               mixBlendMode: "screen",
             }}
           />
-          {animate && (
-            <div className="pointer-events-none absolute inset-0">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="absolute block h-1 w-1 rounded-full trophy-sparkle"
-                  style={{
-                    left: `${(i * 97) % 100}%`,
-                    top: `${20 + ((i * 53) % 60)}%`,
-                    background: accent,
-                    boxShadow: `0 0 8px ${accent}`,
-                    animationDelay: `${(i % 5) * 0.4}s`,
-                    // @ts-expect-error CSS custom props
-                    "--sx": `${((i * 13) % 40) - 20}px`,
-                    "--sy": `${-20 - (i % 8) * 4}px`,
-                  }}
-                />
-              ))}
-            </div>
-          )}
 
           <div className="relative h-full w-full flex items-center justify-center">
             <div
@@ -166,8 +135,8 @@ export function Collectible3D({
               style={{
                 transformStyle: "preserve-3d",
                 animation: doSpin ? "collectible-spin 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none",
-                width: height * 0.7,
-                height: height * 0.9,
+                width: height * 0.78,
+                height: height * 0.94,
                 willChange: doSpin ? "transform" : undefined,
               }}
             >
@@ -180,15 +149,14 @@ export function Collectible3D({
                 height={1024}
                 className="h-full w-full object-contain"
                 style={{
-                  filter: `drop-shadow(0 20px 40px ${accent}aa) drop-shadow(0 0 20px ${accent}66)`,
-                  backfaceVisibility: "hidden",
+                  filter: "drop-shadow(0 24px 28px color-mix(in oklab, black 72%, transparent)) contrast(1.06)",
                 }}
               />
               {animate && (
                 <div
                   className="pointer-events-none absolute inset-0 trophy-shine"
                   style={{
-                    background: `linear-gradient(115deg, transparent 40%, ${accent}66 50%, transparent 60%)`,
+                    background: "linear-gradient(115deg, transparent 42%, color-mix(in oklab, white 28%, transparent) 50%, transparent 58%)",
                     mixBlendMode: "screen",
                   }}
                 />
@@ -198,8 +166,8 @@ export function Collectible3D({
             <div
               className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-6 h-6 rounded-full"
               style={{
-                width: height * 0.55,
-                background: `radial-gradient(closest-side, ${accent}bb, transparent 70%)`,
+                width: height * 0.5,
+                background: "radial-gradient(closest-side, color-mix(in oklab, white 20%, transparent), transparent 72%)",
                 filter: "blur(10px)",
               }}
             />
@@ -223,41 +191,39 @@ export function Collectible3D({
       {/* Controls */}
       <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
         {!reducedMotion && (
-          <button
+          <Button
             type="button"
             onClick={() => setSpin((s) => !s)}
             title={spin ? "Pause rotation" : "Resume rotation"}
-            className="h-8 w-8 rounded-md border flex items-center justify-center text-white/90 backdrop-blur bg-black/40 hover:bg-black/60 transition"
-            style={{ borderColor: `${accent}66` }}
+            variant="outline"
+            size="icon"
+            className="h-8 w-8 bg-card/90"
           >
             {spin ? <Pause className="h-3.5 w-3.5" /> : <RotateCw className="h-3.5 w-3.5" />}
-          </button>
+          </Button>
         )}
-        <button
+        <Button
           type="button"
           onClick={handleDownload}
           title="Download PNG"
-          className="h-8 rounded-md border flex items-center gap-1.5 px-2.5 text-[11px] font-medium text-white/90 backdrop-blur bg-black/40 hover:bg-black/60 transition"
-          style={{ borderColor: `${accent}66` }}
+          variant="outline"
+          size="sm"
+          className="h-8 bg-card/90 px-2.5 text-[11px]"
         >
           <Download className="h-3.5 w-3.5" />
           PNG
-        </button>
+        </Button>
       </div>
 
       {showUnlock && (
-        <button
+        <Button
           type="button"
           onClick={handleUnlock}
-          className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition hover:brightness-110"
-          style={{
-            background: `linear-gradient(135deg, ${accent}, ${accent}aa)`,
-            color: "#0b0f1a",
-            boxShadow: `0 0 22px -6px ${accent}`,
-          }}
+          size="sm"
+          className="absolute bottom-3 right-3 z-10 h-8 gap-1.5 px-3 text-[11px]"
         >
           <Sparkles className="h-3.5 w-3.5" /> Unlock
-        </button>
+        </Button>
       )}
 
       {label && (
