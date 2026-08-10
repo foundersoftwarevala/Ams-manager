@@ -165,7 +165,7 @@ export function Collectible3D({
               className="relative"
               style={{
                 transformStyle: "preserve-3d",
-                animation: doSpin ? "collectible-spin 12s linear infinite" : "none",
+                animation: doSpin ? "collectible-spin 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none",
                 width: height * 0.7,
                 height: height * 0.9,
                 willChange: doSpin ? "transform" : undefined,
