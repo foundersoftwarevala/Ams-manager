@@ -58,45 +58,43 @@ export function ProgressionTimeline({
 
   return (
     <div className="space-y-6">
-      <header
-        className="rounded-2xl border p-8 relative overflow-hidden"
-        style={{
-          borderColor: `${stage.bg.accent}44`,
-          background: stage.bg.gradient,
-        }}
-      >
-        <div className="text-[11px] font-mono tracking-[0.3em] uppercase" style={{ color: stage.bg.accent }}>
-          {kicker}
-        </div>
-        <h1 className="mt-2 text-3xl lg:text-4xl font-semibold text-foreground">{title}</h1>
-        <p className="mt-2 text-sm text-foreground/70 max-w-3xl">{description}</p>
+      <PageHeader
+        kicker={kicker}
+        title={title}
+        description={description}
+        actions={
+          <div className="flex flex-wrap items-center gap-2 text-[11px]">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-8 gap-1.5 rounded-full px-3 text-[11px]"
+              onClick={() => {
+                const next = !soundOn;
+                setSoundOn(next);
+                setGlobalSound(next);
+              }}
+            >
+              <Volume2 className="h-3.5 w-3.5" />
+              Sound: {soundOn && globalSound ? "On" : "Off"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-8 gap-1.5 rounded-full px-3 text-[11px]"
+              onClick={() => setReducedMotionOverride(reducedMotion ? false : true)}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              Motion: {reducedMotion ? "Reduced" : "Full"}
+            </Button>
+            <span className="ml-1 text-muted-foreground">
+              {unlocked.size}/{stages.length} stages unlocked
+            </span>
+          </div>
+        }
+      />
 
-        <div className="mt-5 flex flex-wrap items-center gap-2 text-[11px]">
-          <button
-            onClick={() => {
-              const next = !soundOn;
-              setSoundOn(next);
-              setGlobalSound(next);
-            }}
-            className="rounded-full border px-3 py-1 flex items-center gap-1.5 transition"
-            style={{ borderColor: `${stage.bg.accent}66`, color: stage.bg.accent }}
-          >
-            <Volume2 className="h-3.5 w-3.5" />
-            Sound: {soundOn && globalSound ? "On" : "Off"}
-          </button>
-          <button
-            onClick={() => setReducedMotionOverride(reducedMotion ? false : true)}
-            className="rounded-full border px-3 py-1 flex items-center gap-1.5 transition"
-            style={{ borderColor: `${stage.bg.accent}66`, color: stage.bg.accent }}
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            Motion: {reducedMotion ? "Reduced" : "Full"}
-          </button>
-          <span className="text-foreground/50 ml-2">
-            {unlocked.size}/{stages.length} stages unlocked
-          </span>
-        </div>
-      </header>
 
       <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
         {/* Timeline rail */}
