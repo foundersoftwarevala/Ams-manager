@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Landmark } from "lucide-react";
 import { SHOWCASES, ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { ROLES } from "@/lib/ams/roles";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 
 export const Route = createFileRoute("/_authenticated/museum/")({
   head: () => ({
@@ -20,16 +21,11 @@ export const Route = createFileRoute("/_authenticated/museum/")({
 function Page() {
   return (
     <div className="space-y-8">
-      <header>
-        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
-          Software Vala · Master Presentation Engine
-        </div>
-        <h1 className="mt-2 text-3xl font-semibold text-foreground lg:text-4xl">Museums &amp; Galleries</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Every collectible presented as a real luxury object: glass cabinets, floating platforms,
-          spotlights, reflection floors and cinematic camera work — one immersive environment per role.
-        </p>
-      </header>
+      <PageHeader
+        kicker="Software Vala · Master Presentation Engine"
+        title="Museums & Galleries"
+        description="Every collectible presented as a real luxury object: glass cabinets, floating platforms, spotlights, reflection floors and cinematic camera work — one immersive environment per role."
+      />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SHOWCASES.map((s) => (
