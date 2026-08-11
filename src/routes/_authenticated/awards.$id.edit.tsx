@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { AwardForm } from "@/components/ams/AwardForm";
 import { getAward } from "@/lib/ams/awards.api";
-import { EmptyState } from "@/components/ams/shared/EmptyState";
+import { EmptyState, LoadingState } from "@/components/ams/shared/EmptyState";
 
 export const Route = createFileRoute("/_authenticated/awards/$id/edit")({
   head: () => ({
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated/awards/$id/edit")({
 function EditAwardPage() {
   const { id } = Route.useParams();
   const { data, isLoading } = useQuery({ queryKey: ["award", id], queryFn: () => getAward(id) });
-  if (isLoading) return <div className="p-8 text-sm text-muted-foreground">Loading…</div>;
+  if (isLoading) return <LoadingState />;
   if (!data) return <EmptyState title="Award not found" />;
   return (
     <div className="space-y-6 max-w-[1600px] mx-auto">
