@@ -10,7 +10,7 @@ import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { RarityBadge } from "@/components/ams/shared/RarityBadge";
 import { StatusPill } from "@/components/ams/shared/StatusPill";
 import { PreviewStage } from "@/components/ams/shared/PreviewStage";
-import { EmptyState } from "@/components/ams/shared/EmptyState";
+import { EmptyState, LoadingState } from "@/components/ams/shared/EmptyState";
 import {
   getAward, cloneAward, archiveAward, deleteAward,
   publishAward, unpublishAward, approveAward, rejectAward,
@@ -68,7 +68,7 @@ function AwardDetailPage() {
     onError: (e: Error) => toast.error(e.message),
   });
 
-  if (isLoading) return <div className="p-8 text-sm text-muted-foreground">Loading…</div>;
+  if (isLoading) return <LoadingState />;
   if (!award) {
     return (
       <div className="space-y-6 max-w-[1600px] mx-auto">

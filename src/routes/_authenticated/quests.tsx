@@ -190,7 +190,7 @@ function StageRow({ quest, stage, prevStage, onComplete, onDelete }: {
     <li className={`surface-card p-4 flex items-start gap-3 ${locked ? "opacity-60" : ""}`}>
       <div className="flex flex-col items-center gap-1 shrink-0 pt-1">
         <div className={`w-8 h-8 rounded-full grid place-items-center text-xs font-bold ${
-          done ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
+          done ? "bg-emerald-500/20 text-accent-emerald border border-emerald-500/40"
           : locked ? "bg-muted text-muted-foreground border border-border"
           : "bg-legendary/20 text-legendary border border-legendary/40"
         }`}>
@@ -208,7 +208,7 @@ function StageRow({ quest, stage, prevStage, onComplete, onDelete }: {
 
         <div className="flex flex-wrap gap-1.5 text-[11px] mt-2">
           {stage.missionIds.length > 0 && (
-            <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/30">
+            <span className="px-2 py-0.5 rounded bg-blue-500/10 text-primary-glow border border-blue-500/30">
               {stage.missionIds.length} mission{stage.missionIds.length > 1 ? "s" : ""}
             </span>
           )}
@@ -218,14 +218,14 @@ function StageRow({ quest, stage, prevStage, onComplete, onDelete }: {
             </span>
           )}
           {stage.rewards.xp > 0 && <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">+{stage.rewards.xp} XP</span>}
-          {stage.rewards.coins > 0 && <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-300 border border-yellow-500/30">+{stage.rewards.coins} coins</span>}
-          {stage.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/30">+{stage.rewards.tokens} tokens</span>}
+          {stage.rewards.coins > 0 && <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-accent-amber border border-yellow-500/30">+{stage.rewards.coins} coins</span>}
+          {stage.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-purple-500/10 text-accent-pink border border-purple-500/30">+{stage.rewards.tokens} tokens</span>}
         </div>
       </div>
 
       <div className="flex gap-1 shrink-0">
         {!done && !locked && (
-          <Button size="sm" variant="ghost" className="h-7 gap-1 text-emerald-400" onClick={onComplete}>
+          <Button size="sm" variant="ghost" className="h-7 gap-1 text-accent-emerald" onClick={onComplete}>
             <CheckCircle2 className="h-3.5 w-3.5" /> Complete
           </Button>
         )}

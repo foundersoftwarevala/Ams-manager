@@ -123,7 +123,7 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
           <div className="text-[10px] font-mono tracking-[0.3em] uppercase" style={{ color: role.accent }}>
             {role.passportPrefix}
           </div>
-          <div className="mt-1 text-xl font-semibold text-white">{role.name}</div>
+          <div className="mt-1 text-xl font-semibold text-foreground">{role.name}</div>
           <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
             {role.archetype} · {role.trophyStyle}
           </div>
@@ -152,8 +152,8 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
         <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${role.accent}, ${tier.hue})` }} />
         <div className="px-4 py-2.5">
           <div className="text-[10px] uppercase tracking-[0.24em]" style={{ color: `${role.accent}cc` }}>Engraved</div>
-          <div className="mt-0.5 text-sm text-white font-medium tracking-wide">{tier.label}</div>
-          <div className="text-[10px] text-white/60 italic">"{role.motto}"</div>
+          <div className="mt-0.5 text-sm text-foreground font-medium tracking-wide">{tier.label}</div>
+          <div className="text-[10px] text-foreground/60 italic">"{role.motto}"</div>
         </div>
       </div>
 
@@ -177,14 +177,14 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
         </div>
       </div>
 
-      <div className="relative z-10 px-5 pb-4 grid grid-cols-2 gap-2 text-[10px] text-white/70">
+      <div className="relative z-10 px-5 pb-4 grid grid-cols-2 gap-2 text-[10px] text-foreground/70">
         <div><span className="uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>Material</span><div className="mt-0.5">{theme.material}</div></div>
         <div><span className="uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>Silhouette</span><div className="mt-0.5">{theme.shape}</div></div>
       </div>
 
       <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
         style={{ borderColor: `${role.accent}33`, background: "rgba(0,0,0,0.35)" }}>
-        <div className="flex items-center gap-1.5 text-[11px] text-white/60">
+        <div className="flex items-center gap-1.5 text-[11px] text-foreground/60">
           <Trophy className="h-3.5 w-3.5" style={{ color: role.accent }} />
           {role.awardStyle}
         </div>

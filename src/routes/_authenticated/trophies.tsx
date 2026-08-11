@@ -43,7 +43,7 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "t1", name: <div className="flex items-center gap-2"><Trophy className="h-4 w-4 text-amber-500" /><span className="font-medium">Golden Architect</span></div>, tier: "Gold", event: "Regular", holders: "284", status: <StatusChip tone="success">Active</StatusChip> },
+        { id: "t1", name: <div className="flex items-center gap-2"><Trophy className="h-4 w-4 text-accent-amber" /><span className="font-medium">Golden Architect</span></div>, tier: "Gold", event: "Regular", holders: "284", status: <StatusChip tone="success">Active</StatusChip> },
         { id: "t2", name: <div className="flex items-center gap-2"><Trophy className="h-4 w-4 text-cyan-400" /><span className="font-medium">Diamond Reseller</span></div>, tier: "Diamond", event: "Regular", holders: "96", status: <StatusChip tone="success">Active</StatusChip> },
         { id: "t3", name: <span className="font-medium">Founder's Cup — 2024</span>, tier: "Legend", event: "Limited Edition", holders: "12", status: <StatusChip tone="warn">Limited</StatusChip> },
         { id: "t4", name: <span className="font-medium">Winter Champion</span>, tier: "Elite", event: "Special", holders: "48", status: <StatusChip tone="info">Seasonal</StatusChip> },

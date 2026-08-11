@@ -108,7 +108,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
           <div className="text-[10px] font-mono tracking-[0.3em] uppercase" style={{ color: `${stage.bg.accent}` }}>
             {stage.code}
           </div>
-          <div className="mt-1.5 text-xl font-semibold text-white">{stage.title}</div>
+          <div className="mt-1.5 text-xl font-semibold text-foreground">{stage.title}</div>
           <div className="text-[11px] uppercase tracking-widest" style={{ color: `${stage.bg.accent}bb` }}>
             {stage.theme} · {stage.material}
           </div>
@@ -118,7 +118,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
             style={{ background: `${stage.bg.accent}22`, color: stage.bg.accent, border: `1px solid ${stage.bg.accent}55` }}>
             LV {String(stage.n).padStart(2, "0")}
           </span>
-          {!unlocked && <Lock className="h-4 w-4 text-white/40" />}
+          {!unlocked && <Lock className="h-4 w-4 text-foreground/40" />}
         </div>
       </div>
 
@@ -152,21 +152,21 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
         }}>
         <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${rFrom}, ${rTo})` }} />
         <div className="px-4 py-2.5 flex items-center justify-between">
-          <div className="text-xs uppercase tracking-[0.24em] text-white/85">{stage.nameplate}</div>
+          <div className="text-xs uppercase tracking-[0.24em] text-foreground/85">{stage.nameplate}</div>
           <Sparkles className="h-3.5 w-3.5" style={{ color: stage.bg.accent }} />
         </div>
         <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${rTo}, ${rFrom})` }} />
       </div>
 
       {/* tagline */}
-      <div className="relative z-10 px-5 pb-3 text-sm text-white/70 italic">"{stage.tagline}"</div>
+      <div className="relative z-10 px-5 pb-3 text-sm text-foreground/70 italic">"{stage.tagline}"</div>
 
       {/* rewards grid */}
       <div className="relative z-10 px-5 pb-4">
         <div className="grid grid-cols-2 gap-1.5">
           {stage.rewards.map((r) => (
             <div key={r.label}
-              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] text-white/85"
+              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] text-foreground/85"
               style={{ background: `${stage.bg.accent}12`, border: `1px solid ${stage.bg.accent}33` }}>
               <span className="text-sm leading-none">{KIND_ICON[r.kind] ?? "•"}</span>
               <span className="truncate">{r.label}</span>
@@ -179,18 +179,18 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
       <div className="relative z-10 px-5 pb-4 grid grid-cols-2 gap-3 text-[10px]">
         <div>
           <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>Animation</div>
-          <div className="text-white/70 space-y-0.5">{stage.animation.map((a) => <div key={a}>· {a}</div>)}</div>
+          <div className="text-foreground/70 space-y-0.5">{stage.animation.map((a) => <div key={a}>· {a}</div>)}</div>
         </div>
         <div>
           <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>Sound</div>
-          <div className="text-white/70 space-y-0.5">{stage.sound.map((a) => <div key={a}>· {a}</div>)}</div>
+          <div className="text-foreground/70 space-y-0.5">{stage.sound.map((a) => <div key={a}>· {a}</div>)}</div>
         </div>
       </div>
 
       {/* actions */}
       <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
         style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.35)" }}>
-        <div className="text-[11px] font-mono text-white/60">
+        <div className="text-[11px] font-mono text-foreground/60">
           Passport · <span style={{ color: stage.bg.accent }}>{stage.passportMotif}</span>
         </div>
         <button

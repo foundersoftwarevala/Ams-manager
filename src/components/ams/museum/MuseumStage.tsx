@@ -301,7 +301,7 @@ export function MuseumStage({
             </StageBtn>
           )}
           <button type="button" onClick={download} title="Download PNG"
-            className="flex h-8 items-center gap-1.5 rounded-md border bg-black/45 px-2.5 text-[11px] font-medium text-white/90 backdrop-blur transition hover:bg-black/65"
+            className="flex h-8 items-center gap-1.5 rounded-md border bg-black/45 px-2.5 text-[11px] font-medium text-foreground/90 backdrop-blur transition hover:bg-background/80"
             style={{ borderColor: `${accent}66` }}>
             <Download className="h-3.5 w-3.5" /> PNG
           </button>
@@ -371,7 +371,7 @@ function StageBtn({
   return (
     <button
       type="button" onClick={onClick} title={title} aria-label={title} aria-pressed={active}
-      className="flex h-8 w-8 items-center justify-center rounded-md border text-white/90 backdrop-blur transition hover:bg-black/65"
+      className="flex h-8 w-8 items-center justify-center rounded-md border text-foreground/90 backdrop-blur transition hover:bg-background/80"
       style={{ borderColor: `${accent}66`, background: active ? `${accent}44` : "rgba(0,0,0,0.45)" }}
     >
       {children}
@@ -410,7 +410,7 @@ export function MuseumFullscreen({
 
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-black/90 p-4 backdrop-blur-xl motion-rise" role="dialog" aria-modal="true"
+    <div className="fixed inset-0 z-50 flex flex-col bg-background/80 p-4 backdrop-blur-xl motion-rise" role="dialog" aria-modal="true"
       aria-label={`${stage.label} fullscreen presentation`}>
       <div className="mb-3 flex items-center justify-between">
         <div className="font-mono text-[11px] uppercase tracking-[0.3em]" style={{ color: `${stage.accent}cc` }}>
