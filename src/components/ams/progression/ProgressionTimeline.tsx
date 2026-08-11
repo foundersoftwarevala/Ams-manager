@@ -5,6 +5,9 @@ import { StageCard } from "@/components/ams/trophy-gallery/StageCard";
 import { useCelebration, type CelebrateKind } from "@/components/ams/effects/Celebration";
 import { playUnlock } from "@/lib/ams/trophy-sounds";
 import { useReducedMotion, setReducedMotionOverride } from "@/hooks/use-reduced-motion";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
+import { Button } from "@/components/ui/button";
+
 
 const UNLOCK_KIND: Record<string, CelebrateKind> = {
   starter: "achievement",
