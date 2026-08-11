@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { ChatScreen } from "@/components/ams/chat/ChatScreen";
 
 export const Route = createFileRoute("/_authenticated/chat")({
@@ -13,7 +14,12 @@ export const Route = createFileRoute("/_authenticated/chat")({
     ],
   }),
   component: () => (
-    <div className="p-4 lg:p-6">
+    <div className="space-y-6">
+      <PageHeader
+        kicker="Enterprise Communication"
+        title="Chat"
+        description="Role-scoped enterprise messaging with verified Software Vala IDs, module scope and context rails."
+      />
       <ChatScreen />
     </div>
   ),

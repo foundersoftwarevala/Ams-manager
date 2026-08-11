@@ -7,6 +7,8 @@ import {
   Row6Engagement, Row7Wallets, Row8Rewards, Row9Timelines, Row10AI,
   Row11Heatmaps, Row12Analytics, Row13Halls, SectionTitle,
 } from "@/components/dashboard/Widgets";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
+import { ErrorState, LoadingState } from "@/components/ams/shared/EmptyState";
 import { RoleAchievementShowcase } from "@/components/ams/shared/RoleAchievementShowcase";
 
 const dashOpts = (fn: () => Promise<any>) =>
@@ -25,10 +27,8 @@ export const Route = createFileRoute("/_authenticated/")({
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(dashOpts(getCommandCenter)),
   component: CommandCenter,
-  errorComponent: ({ error }) => (
-    <div className="p-8 text-sm text-destructive">{error.message}</div>
-  ),
-  pendingComponent: () => <div className="p-8 text-sm text-muted-foreground">Booting command center…</div>,
+  errorComponent: ({ error }) => <ErrorState description={error.message} />,
+  pendingComponent: () => <LoadingState label="Booting command center…" />,
 });
 
 function CommandCenter() {
@@ -37,15 +37,11 @@ function CommandCenter() {
 
   return (
     <div className="space-y-6 max-w-[1600px] mx-auto">
-      <div className="flex items-end justify-between">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">welcome back</div>
-          <h1 className="text-3xl font-bold tracking-tight text-gradient-primary">
-            {data.profile?.display_name ?? "Operator"}
-          </h1>
-          <p className="text-sm text-muted-foreground mt-1">Your achievement command center. Live data, every signal.</p>
-        </div>
-      </div>
+      <PageHeader
+        kicker="Welcome back"
+        title={data.profile?.display_name ?? "Operator"}
+        description="Your achievement command center. Live data, every signal."
+      />
 
       <RoleAchievementShowcase name={data.profile?.display_name ?? "Operator"} />
 
