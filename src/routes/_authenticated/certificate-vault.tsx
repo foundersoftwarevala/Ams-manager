@@ -60,7 +60,7 @@ function Page() {
         {visible.map((role) => {
           const identity = certificateIdentity(role);
           return (
-            <article key={role.slug} className="rounded-2xl border border-border/60 bg-black/20 overflow-hidden">
+            <article key={role.slug} className="rounded-2xl border border-border/60 bg-card overflow-hidden">
               <Collectible3D
                 src={ROLE_CERTIFICATE[role.slug]}
                 filename={`${role.slug}-certificate.png`}
@@ -74,11 +74,11 @@ function Page() {
               />
               <div className="p-4 space-y-3">
                 <div>
-                  <div className="text-lg font-semibold text-white">{role.name}</div>
+                  <div className="text-lg font-semibold text-foreground">{role.name}</div>
                   <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
                     {identity.title}
                   </div>
-                  <p className="mt-2 text-xs text-white/60 font-mono">
+                  <p className="mt-2 text-xs text-foreground/60 font-mono">
                     No. {identity.number} · Issued {identity.issued}
                   </p>
                 </div>

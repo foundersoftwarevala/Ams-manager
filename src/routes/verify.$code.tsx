@@ -42,15 +42,15 @@ function VerifyPage() {
 
   if (!match) {
     return (
-      <main className="min-h-screen bg-[#05070d] text-white flex items-center justify-center p-6">
+      <main className="min-h-screen bg-[#05070d] text-foreground flex items-center justify-center p-6">
         <div className="max-w-md w-full rounded-2xl border border-red-500/40 bg-red-500/5 p-8 text-center">
           <ShieldAlert className="h-10 w-10 mx-auto text-red-400" />
           <h1 className="mt-4 text-2xl font-semibold">Verification Failed</h1>
-          <p className="mt-2 text-sm text-white/60">
+          <p className="mt-2 text-sm text-foreground/60">
             No digital passport or certificate is registered under code{" "}
-            <span className="font-mono text-white/80">{code}</span>.
+            <span className="font-mono text-foreground/80">{code}</span>.
           </p>
-          <Link to="/" className="mt-6 inline-block rounded-lg border border-white/20 px-4 py-2 text-xs hover:bg-white/5">
+          <Link to="/" className="mt-6 inline-block rounded-lg border border-border px-4 py-2 text-xs hover:bg-foreground/5">
             Back to AMS
           </Link>
         </div>
@@ -63,7 +63,7 @@ function VerifyPage() {
   const accent = role.accent;
 
   return (
-    <main className="min-h-screen bg-[#05070d] text-white">
+    <main className="min-h-screen bg-[#05070d] text-foreground">
       <div
         className="border-b"
         style={{
@@ -100,7 +100,7 @@ function VerifyPage() {
             <div className="text-[11px] uppercase tracking-widest" style={{ color: `${accent}bb` }}>
               {role.archetype} · {identity.verification}
             </div>
-            <p className="pt-2 text-xs text-white/60 italic">"{role.passport.cover}"</p>
+            <p className="pt-2 text-xs text-foreground/60 italic">"{role.passport.cover}"</p>
           </div>
         </section>
 
@@ -119,7 +119,7 @@ function VerifyPage() {
             </div>
             <ol className="space-y-2">
               {role.passport.timeline.map((chapter, i) => (
-                <li key={chapter} className="flex items-center gap-3 text-sm text-white/75">
+                <li key={chapter} className="flex items-center gap-3 text-sm text-foreground/75">
                   <span
                     className="h-6 w-6 shrink-0 rounded-full grid place-items-center text-[10px] font-bold"
                     style={{ background: `${accent}22`, color: accent, border: `1px solid ${accent}55` }}
@@ -146,8 +146,8 @@ function Row({
     <div className="flex items-start gap-3">
       <span style={{ color: accent }}>{icon}</span>
       <div className="min-w-0">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-white/40">{label}</div>
-        <div className={`text-sm text-white/90 break-words ${mono ? "font-mono" : ""}`}>{value}</div>
+        <div className="text-[10px] uppercase tracking-[0.2em] text-foreground/40">{label}</div>
+        <div className={`text-sm text-foreground/90 break-words ${mono ? "font-mono" : ""}`}>{value}</div>
       </div>
     </div>
   );
@@ -168,10 +168,10 @@ function ScanBlock({ accent, url }: { accent: string; url: string }) {
       {dataUrl && (
         <img src={dataUrl} alt="Passport verification QR code" className="rounded-lg bg-white p-1.5" width={110} height={110} />
       )}
-      <div className="text-xs text-white/60">
-        <div className="text-white/85 font-semibold mb-1">Re-scan or share</div>
+      <div className="text-xs text-foreground/60">
+        <div className="text-foreground/85 font-semibold mb-1">Re-scan or share</div>
         This QR resolves to the same verification record.
-        <div className="mt-1 font-mono text-[10px] text-white/40 break-all">{url}</div>
+        <div className="mt-1 font-mono text-[10px] text-foreground/40 break-all">{url}</div>
       </div>
     </div>
   );
@@ -180,7 +180,7 @@ function ScanBlock({ accent, url }: { accent: string; url: string }) {
 function CertificateVerification({ role, identity }: { role: RoleDNA; identity: CertificateIdentity }) {
   const accent = role.accent;
   return (
-    <main className="min-h-screen bg-[#05070d] text-white">
+    <main className="min-h-screen bg-[#05070d] text-foreground">
       <div
         className="border-b"
         style={{ borderColor: `${accent}33`, background: `radial-gradient(80% 120% at 50% 0%, ${accent}22, transparent 70%)` }}
@@ -233,7 +233,7 @@ function CertificateVerification({ role, identity }: { role: RoleDNA; identity: 
             </div>
             <ol className="space-y-2">
               {role.certificates.map((cert, i) => (
-                <li key={cert.key} className="flex items-center gap-3 text-sm text-white/75">
+                <li key={cert.key} className="flex items-center gap-3 text-sm text-foreground/75">
                   <span
                     className="h-6 w-6 shrink-0 rounded-full grid place-items-center text-[10px] font-bold"
                     style={{ background: `${accent}22`, color: accent, border: `1px solid ${accent}55` }}

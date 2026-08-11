@@ -44,7 +44,7 @@ function Page() {
             key={t.slug}
             to="/collection/$type"
             params={{ type: t.slug }}
-            className="group rounded-2xl border border-border/60 bg-black/25 p-5 motion-card"
+            className="group rounded-2xl border border-border/60 bg-card p-5 motion-card"
           >
             <div className="font-mono text-[10px] uppercase tracking-[0.3em]" style={{ color: `${t.accent}bb` }}>
               {t.kicker}
@@ -74,7 +74,7 @@ function Page() {
         <h2 className="text-sm font-semibold text-foreground">Career stages</h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {CAREER_STAGES.map((s, i) => (
-            <div key={s.key} className="rounded-xl border border-border/60 bg-black/20 p-3">
+            <div key={s.key} className="rounded-xl border border-border/60 bg-card p-3">
               <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
                 Stage {String(i + 1).padStart(2, "0")}
               </div>

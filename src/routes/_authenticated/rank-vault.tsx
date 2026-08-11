@@ -61,7 +61,7 @@ function Page() {
           return (
             <article
               key={role.slug}
-              className="rounded-2xl border border-border/60 bg-black/20 overflow-hidden"
+              className="rounded-2xl border border-border/60 bg-card overflow-hidden"
             >
               <Collectible3D
                 src={img}
@@ -75,11 +75,11 @@ function Page() {
                 unlockSubtitle={role.archetype}
               />
               <div className="p-4">
-                <div className="text-lg font-semibold text-white">{role.name}</div>
+                <div className="text-lg font-semibold text-foreground">{role.name}</div>
                 <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
                   {role.archetype} · Rank Emblem
                 </div>
-                <p className="mt-2 text-xs text-white/70 italic">&quot;{role.motto}&quot;</p>
+                <p className="mt-2 text-xs text-foreground/70 italic">&quot;{role.motto}&quot;</p>
               </div>
             </article>
           );

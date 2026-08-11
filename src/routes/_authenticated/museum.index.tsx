@@ -37,7 +37,7 @@ function Page() {
             key={s.slug}
             to="/museum/$showcase"
             params={{ showcase: s.slug }}
-            className="group rounded-2xl border border-border/60 bg-black/20 p-4 motion-card"
+            className="group rounded-2xl border border-border/60 bg-card p-4 motion-card"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: `${s.accent}cc` }}>

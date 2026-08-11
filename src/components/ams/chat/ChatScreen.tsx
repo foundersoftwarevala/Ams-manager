@@ -398,7 +398,7 @@ export function ChatScreen() {
                       </span>
                     </div>
                     <div className="mt-0.5 flex items-center gap-2 text-[10px] text-muted-foreground">
-                      <Shield className="h-3 w-3 text-emerald-400" /> Module {active.module} · realtime enabled
+                      <Shield className="h-3 w-3 text-accent-emerald" /> Module {active.module} · realtime enabled
                     </div>
                   </div>
                 </div>
@@ -494,7 +494,7 @@ export function ChatScreen() {
               </div>
               <div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-[#d4a14a]">Your access</div>
-                <div className={`mt-1 text-[11px] ${canPostHere ? "text-emerald-300" : "text-red-300"}`}>
+                <div className={`mt-1 text-[11px] ${canPostHere ? "text-accent-emerald" : "text-red-300"}`}>
                   {canPostHere ? "Read + write" : "Read only"}
                 </div>
               </div>
@@ -679,7 +679,7 @@ function EmptyConversation({ title }: { title: string }) {
   return (
     <div className="grid h-full place-items-center text-center text-xs text-muted-foreground">
       <div>
-        <Shield className="mx-auto h-6 w-6 text-emerald-400" />
+        <Shield className="mx-auto h-6 w-6 text-accent-emerald" />
         <div className="mt-2">Secure channel <span className="text-[#f5d77a]">{title}</span> is ready.</div>
         <div className="text-[10px]">Type a message to get started — realtime delivery is on.</div>
       </div>

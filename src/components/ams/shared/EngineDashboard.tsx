@@ -116,7 +116,7 @@ export function EngineDashboard({
               {k.delta && (
                 <span className={cn(
                   "text-[11px] flex items-center gap-0.5",
-                  k.trend === "down" ? "text-destructive" : "text-emerald-500",
+                  k.trend === "down" ? "text-destructive" : "text-accent-emerald",
                 )}>
                   {k.trend === "down" ? <TrendingDown className="h-3 w-3" /> : <TrendingUp className="h-3 w-3" />}
                   {k.delta}
@@ -262,9 +262,9 @@ export function EngineDashboard({
 
 export function StatusChip({ tone, children }: { tone: "success" | "warn" | "info" | "muted" | "danger"; children: ReactNode }) {
   const map: Record<string, string> = {
-    success: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
-    warn:    "bg-amber-500/10 text-amber-500 border-amber-500/30",
-    info:    "bg-sky-500/10 text-sky-500 border-sky-500/30",
+    success: "bg-emerald-500/10 text-accent-emerald border-emerald-500/30",
+    warn:    "bg-amber-500/10 text-accent-amber border-amber-500/30",
+    info:    "bg-sky-500/10 text-primary-glow border-sky-500/30",
     muted:   "bg-muted/40 text-muted-foreground border-border",
     danger:  "bg-destructive/10 text-destructive border-destructive/30",
   };

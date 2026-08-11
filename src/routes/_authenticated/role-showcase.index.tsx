@@ -61,8 +61,8 @@ function Page() {
                   <div className="text-[10px] tracking-widest uppercase" style={{ color: `${t.accent}bb` }}>
                     {t.environmentLabel}
                   </div>
-                  <div className="mt-1 text-2xl text-white" style={{ fontFamily: t.displayFont }}>{role.name}</div>
-                  <div className="text-[11px] mt-0.5 italic text-white/60">"{role.motto}"</div>
+                  <div className="mt-1 text-2xl text-foreground" style={{ fontFamily: t.displayFont }}>{role.name}</div>
+                  <div className="text-[11px] mt-0.5 italic text-foreground/60">"{role.motto}"</div>
                   <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium"
                     style={{ color: t.primary }}>
                     Enter room <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
