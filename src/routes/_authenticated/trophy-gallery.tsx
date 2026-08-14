@@ -91,26 +91,21 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
   }
 
   return (
-    <article
-      className="relative rounded-2xl border overflow-hidden"
-      style={{
-        background: theme.grad,
-        borderColor: `${role.accent}55`,
-        boxShadow: `0 30px 60px -30px ${role.accent}80, inset 0 0 0 1px ${role.accent}22`,
-      }}
-    >
+    <article className="surface-card relative overflow-hidden rounded-2xl">
       {/* museum spotlight */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-56 w-56 rounded-full"
-        style={{ background: `radial-gradient(closest-side, ${role.accent}55, transparent)` }} />
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full"
+        style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary) 45%, transparent), transparent)" }}
+      />
 
       {/* sparkles */}
       <div className="pointer-events-none absolute inset-0">
         {Array.from({ length: 10 }).map((_, i) => (
           <span key={i}
-            className="absolute h-1 w-1 rounded-full trophy-sparkle"
+            className="absolute h-1 w-1 rounded-full trophy-sparkle bg-primary-glow"
             style={{
               left: `${10 + Math.random() * 80}%`, top: `${10 + Math.random() * 60}%`,
-              background: theme.particle, boxShadow: `0 0 10px ${theme.particle}`,
+              boxShadow: "0 0 10px var(--color-primary-glow)",
               animationDelay: `${Math.random() * 2}s`,
               // @ts-expect-error CSS var
               "--sx": `${(Math.random() - 0.5) * 30}px`, "--sy": `-${20 + Math.random() * 30}px`,
@@ -120,56 +115,55 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
 
       <div className="relative z-10 flex items-start justify-between p-5">
         <div>
-          <div className="text-[10px] font-mono tracking-[0.3em] uppercase" style={{ color: role.accent }}>
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary-glow">
             {role.passportPrefix}
           </div>
           <div className="mt-1 text-xl font-semibold text-foreground">{role.name}</div>
-          <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+          <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
             {role.archetype} · {role.trophyStyle}
           </div>
         </div>
-        <span className="text-[10px] font-mono px-2 py-1 rounded-full"
-          style={{ background: `${role.accent}22`, color: role.accent, border: `1px solid ${role.accent}55` }}>
+        <span className="rounded-full border border-primary/45 bg-primary/12 px-2 py-1 font-mono text-[10px] text-primary-glow">
           {tier.label}
         </span>
       </div>
 
       {/* Trophy display */}
-      <div className="relative z-10 h-64 flex items-center justify-center">
-        <div className="absolute bottom-6 h-6 w-56 rounded-full"
-          style={{ background: `radial-gradient(closest-side, ${role.accent}88, transparent)`, filter: "blur(6px)" }} />
+      <div className="relative z-10 flex h-64 items-center justify-center">
+        <div
+          className="absolute bottom-6 h-6 w-56 rounded-full blur-[6px]"
+          style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary) 60%, transparent), transparent)" }}
+        />
         <img
           src={TROPHY[role.slug]}
           alt={`${role.name} luxury trophy`}
-          className={`h-56 w-56 object-contain trophy-float ${pulse ? "trophy-unlock" : ""}`}
-          style={{ filter: `drop-shadow(0 12px 30px ${role.accent}88)` }}
+          className={`h-56 w-56 object-contain trophy-float drop-shadow-[0_12px_30px_color-mix(in_oklab,var(--color-primary)_55%,transparent)] ${pulse ? "trophy-unlock" : ""}`}
         />
       </div>
 
       {/* engraved nameplate */}
-      <div className="relative z-10 mx-5 mb-3 rounded-md border overflow-hidden"
-        style={{ borderColor: `${role.accent}66`, background: `linear-gradient(180deg, ${role.accent}22, transparent 60%, ${role.accent}18)` }}>
-        <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${role.accent}, ${tier.hue})` }} />
+      <div className="relative z-10 mx-5 mb-3 overflow-hidden rounded-md border border-primary/35 bg-primary/8">
+        <div className="h-1 w-full bg-[var(--gradient-primary)]" />
         <div className="px-4 py-2.5">
-          <div className="text-[10px] uppercase tracking-[0.24em]" style={{ color: `${role.accent}cc` }}>Engraved</div>
-          <div className="mt-0.5 text-sm text-foreground font-medium tracking-wide">{tier.label}</div>
-          <div className="text-[10px] text-foreground/60 italic">"{role.motto}"</div>
+          <div className="text-[10px] uppercase tracking-[0.24em] text-primary-glow">Engraved</div>
+          <div className="mt-0.5 text-sm font-medium tracking-wide text-foreground">{tier.label}</div>
+          <div className="text-[10px] italic text-foreground/60">"{role.motto}"</div>
         </div>
       </div>
 
       {/* tier selector */}
       <div className="relative z-10 px-5 pb-3">
-        <div className="flex gap-1.5 flex-wrap">
+        <div className="flex flex-wrap gap-1.5">
           {role.trophies.map((t, i) => (
             <button
               key={t.key}
               onClick={() => setTierIdx(i)}
-              className="text-[10px] font-mono px-2 py-1 rounded-full transition"
-              style={{
-                background: i === tierIdx ? t.hue : "transparent",
-                color: i === tierIdx ? "oklch(0.18 0.034 258)" : t.hue,
-                border: `1px solid ${t.hue}77`,
-              }}
+              aria-pressed={i === tierIdx}
+              className={`focus-ring rounded-full border px-2 py-1 font-mono text-[10px] transition ${
+                i === tierIdx
+                  ? "border-primary bg-primary text-primary-foreground shadow-[0_0_18px_-6px_var(--color-primary)]"
+                  : "border-border text-muted-foreground hover:border-primary/50 hover:text-primary-glow"
+              }`}
             >
               {t.key.toUpperCase()}
             </button>
@@ -177,23 +171,22 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
         </div>
       </div>
 
-      <div className="relative z-10 px-5 pb-4 grid grid-cols-2 gap-2 text-[10px] text-foreground/70">
-        <div><span className="uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>Material</span><div className="mt-0.5">{theme.material}</div></div>
-        <div><span className="uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>Silhouette</span><div className="mt-0.5">{theme.shape}</div></div>
+      <div className="relative z-10 grid grid-cols-2 gap-2 px-5 pb-4 text-[10px] text-foreground/70">
+        <div><span className="uppercase tracking-widest text-muted-foreground">Material</span><div className="mt-0.5">{theme.material}</div></div>
+        <div><span className="uppercase tracking-widest text-muted-foreground">Silhouette</span><div className="mt-0.5">{theme.shape}</div></div>
       </div>
 
-      <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
-        style={{ borderColor: `${role.accent}33`, background: "color-mix(in oklab, var(--color-surface) 82%, transparent)" }}>
+      <div className="relative z-10 flex items-center justify-between border-t border-border/70 bg-surface/70 px-5 py-3">
         <div className="flex items-center gap-1.5 text-[11px] text-foreground/60">
           <Trophy className="h-3.5 w-3.5" style={{ color: role.accent }} />
           {role.awardStyle}
         </div>
         <button onClick={play}
-          className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition hover:brightness-110"
-          style={{ background: `linear-gradient(135deg, ${role.accent}, ${tier.hue})`, color: "oklch(0.18 0.034 258)", boxShadow: `0 0 22px -6px ${role.accent}` }}>
+          className="btn-glow focus-ring inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-primary-foreground transition">
           <Volume2 className="h-3.5 w-3.5" /> Ceremony
         </button>
       </div>
     </article>
   );
 }
+
