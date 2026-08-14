@@ -42,7 +42,7 @@ function VerifyPage() {
 
   if (!match) {
     return (
-      <main className="min-h-screen bg-[#05070d] text-foreground flex items-center justify-center p-6">
+      <main className="min-h-screen bg-background text-foreground flex items-center justify-center p-6">
         <div className="max-w-md w-full rounded-2xl border border-red-500/40 bg-red-500/5 p-8 text-center">
           <ShieldAlert className="h-10 w-10 mx-auto text-red-400" />
           <h1 className="mt-4 text-2xl font-semibold">Verification Failed</h1>
@@ -63,7 +63,7 @@ function VerifyPage() {
   const accent = role.accent;
 
   return (
-    <main className="min-h-screen bg-[#05070d] text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       <div
         className="border-b"
         style={{
@@ -180,7 +180,7 @@ function ScanBlock({ accent, url }: { accent: string; url: string }) {
 function CertificateVerification({ role, identity }: { role: RoleDNA; identity: CertificateIdentity }) {
   const accent = role.accent;
   return (
-    <main className="min-h-screen bg-[#05070d] text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       <div
         className="border-b"
         style={{ borderColor: `${accent}33`, background: `radial-gradient(80% 120% at 50% 0%, ${accent}22, transparent 70%)` }}

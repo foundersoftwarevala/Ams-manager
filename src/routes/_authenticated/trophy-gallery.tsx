@@ -167,7 +167,7 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
               className="text-[10px] font-mono px-2 py-1 rounded-full transition"
               style={{
                 background: i === tierIdx ? t.hue : "transparent",
-                color: i === tierIdx ? "#0a0a0a" : t.hue,
+                color: i === tierIdx ? "oklch(0.18 0.034 258)" : t.hue,
                 border: `1px solid ${t.hue}77`,
               }}
             >
@@ -183,14 +183,14 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
       </div>
 
       <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
-        style={{ borderColor: `${role.accent}33`, background: "rgba(0,0,0,0.14)" }}>
+        style={{ borderColor: `${role.accent}33`, background: "color-mix(in oklab, var(--color-surface) 82%, transparent)" }}>
         <div className="flex items-center gap-1.5 text-[11px] text-foreground/60">
           <Trophy className="h-3.5 w-3.5" style={{ color: role.accent }} />
           {role.awardStyle}
         </div>
         <button onClick={play}
           className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition hover:brightness-110"
-          style={{ background: `linear-gradient(135deg, ${role.accent}, ${tier.hue})`, color: "#0a0a0a", boxShadow: `0 0 22px -6px ${role.accent}` }}>
+          style={{ background: `linear-gradient(135deg, ${role.accent}, ${tier.hue})`, color: "oklch(0.18 0.034 258)", boxShadow: `0 0 22px -6px ${role.accent}` }}>
           <Volume2 className="h-3.5 w-3.5" /> Ceremony
         </button>
       </div>
