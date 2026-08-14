@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Trophy, Volume2, Sparkles } from "lucide-react";
 import { ROLES } from "@/lib/ams/roles";
 import { playUnlock, type UnlockPreset } from "@/lib/ams/trophy-sounds";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 
 import affiliate from "@/assets/trophies/affiliate.png";
 import author from "@/assets/trophies/author.png";
