@@ -102,7 +102,7 @@ export function Collectible3D({
   return (
     <div
       ref={wrapRef}
-      className="relative w-full overflow-hidden border-b border-border/70 bg-background"
+      className="object-3d relative w-full overflow-hidden rounded-t-xl border-b border-border/70"
       style={{
         height,
         perspective: "1200px",
