@@ -219,7 +219,7 @@ function StageRow({ quest, stage, prevStage, onComplete, onDelete }: {
           )}
           {stage.rewards.xp > 0 && <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">+{stage.rewards.xp} XP</span>}
           {stage.rewards.coins > 0 && <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-accent-amber border border-yellow-500/30">+{stage.rewards.coins} coins</span>}
-          {stage.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-purple-500/10 text-accent-pink border border-purple-500/30">+{stage.rewards.tokens} tokens</span>}
+          {stage.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-primary/12 text-primary-glow border border-primary/30">+{stage.rewards.tokens} tokens</span>}
         </div>
       </div>
 

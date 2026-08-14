@@ -264,7 +264,7 @@ export function WorkspaceBar() {
               onClick={goNext}
               title={`Next: ${nextMeta.label} (Alt+N)`}
               aria-keyshortcuts="Alt+N"
-              className="inline-flex items-center gap-1.5 rounded-md bg-gold-gradient px-3 py-1 text-[11px] font-semibold text-background shadow-[0_6px_16px_-6px_oklch(0.78_0.14_82)]"
+              className="inline-flex items-center gap-1.5 rounded-md bg-gold-gradient px-3 py-1 text-[11px] font-semibold text-background shadow-[0_6px_16px_-6px_oklch(0.58_0.19_255)]"
             >
               Next: {nextMeta.label} <ArrowRight className="h-3 w-3" />
             </button>

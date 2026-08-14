@@ -18,7 +18,7 @@ const PLINTH: Record<MuseumEnvironment["plinth"], string> = {
   walnut: "linear-gradient(180deg, #6b4326 0%, #4a2d18 50%, #2a1a0e 100%)",
   obsidian: "linear-gradient(180deg, #23262d 0%, #14161b 50%, #070809 100%)",
   leather: "linear-gradient(180deg, #5c3a24 0%, #3d2517 55%, #1f130b 100%)",
-  glass: "linear-gradient(180deg, rgba(226,240,255,0.55) 0%, rgba(140,180,220,0.28) 50%, rgba(10,20,35,0.6) 100%)",
+  glass: "linear-gradient(180deg, rgba(226,240,255,0.55) 0%, rgba(140,180,220,0.14) 50%, rgba(10,20,35,0.6) 100%)",
 };
 
 export interface MuseumStageProps {

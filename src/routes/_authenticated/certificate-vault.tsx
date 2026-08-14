@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { useMemo, useState } from "react";
 import { ScrollText } from "lucide-react";
 import { Collectible3D } from "@/components/ams/collectible/Collectible3D";
@@ -36,20 +37,17 @@ function Page() {
 
   return (
     <div className="space-y-6">
-      <header className="page-banner flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-primary/80">Certificate Vault</div>
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">Premium 3D Certificate Collection</h1>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
-            Foil-embossed certificates with guilloché borders, wax seals and role-specific crests.
-            Every certificate carries its own registry number and scannable QR verification.
-          </p>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <PageHeader
+        kicker="Certificate Vault"
+        title="Premium 3D Certificate Collection"
+        description="Foil-embossed certificates with guilloché borders, wax seals and role-specific crests. Every certificate carries its own registry number and scannable QR verification."
+        actions={
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <ScrollText className="h-4 w-4 text-primary" />
           <span>{ROLES.length} certificates · {visible.length} shown</span>
         </div>
-      </header>
+        }
+      />
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <RoleFilter value={filter} onChange={setFilter} />

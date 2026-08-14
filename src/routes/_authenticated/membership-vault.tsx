@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { useMemo, useState } from "react";
 import { CreditCard } from "lucide-react";
 import { ROLES } from "@/lib/ams/roles";
@@ -29,20 +30,17 @@ function Page() {
 
   return (
     <div className="space-y-6">
-      <header className="page-banner flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-primary/80">Membership Vault</div>
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight text-foreground">Premium 3D Membership Cards</h1>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
-            Every role earns a handcrafted metal-and-hologram membership card — NFC chip, holographic
-            security strip, engraved role emblem and laser-etched serial. Rotate, inspect and export as PNG.
-          </p>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <PageHeader
+        kicker="Membership Vault"
+        title="Premium 3D Membership Cards"
+        description="Every role earns a handcrafted metal-and-hologram membership card — NFC chip, holographic security strip, engraved role emblem and laser-etched serial. Rotate, inspect and export as PNG."
+        actions={
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <CreditCard className="h-4 w-4 text-primary" />
           <span>{ROLES.length} cards · {visible.length} shown</span>
         </div>
-      </header>
+        }
+      />
 
       <RoleFilter value={filter} onChange={setFilter} />
 
