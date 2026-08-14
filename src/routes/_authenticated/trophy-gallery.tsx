@@ -23,17 +23,17 @@ const TROPHY: Record<string, string> = {
 
 // Museum-quality theme per role — no two identities repeat.
 const ROLE_THEME: Record<string, { grad: string; particle: string; unlock: UnlockPreset; material: string; shape: string }> = {
-  developer:  { grad: "radial-gradient(900px 400px at 20% 0%, rgba(34,211,238,0.28), transparent 60%), linear-gradient(160deg,#061620,#02080d)", particle: "#7defff", unlock: "diamond", material: "Cyan Crystal · Circuit Base", shape: "Hexagonal Chip Trophy" },
-  reseller:   { grad: "radial-gradient(900px 400px at 80% 0%, rgba(251,191,36,0.32), transparent 60%), linear-gradient(160deg,#1a1204,#0a0702)", particle: "#ffe28a", unlock: "gold", material: "24k Gold · Onyx Plinth", shape: "Growth Diamond Cup" },
-  franchise:  { grad: "radial-gradient(900px 400px at 40% 0%, rgba(244,114,182,0.30), transparent 60%), linear-gradient(160deg,#180810,#0a0308)", particle: "#ffb0d4", unlock: "elite", material: "Rose Gold · Wax Crest", shape: "Regal Shield Standard" },
-  author:     { grad: "radial-gradient(900px 400px at 60% 0%, rgba(167,139,250,0.30), transparent 60%), linear-gradient(160deg,#0f091a,#050310)", particle: "#d9c9ff", unlock: "silver", material: "Amethyst · Ink Marble", shape: "Feathered Quill Obelisk" },
-  vendor:     { grad: "radial-gradient(900px 400px at 30% 0%, rgba(52,211,153,0.30), transparent 60%), linear-gradient(160deg,#04180f,#02090a)", particle: "#8affd0", unlock: "silver", material: "Emerald Glass · Marble", shape: "Storefront Arch Cup" },
-  affiliate:  { grad: "radial-gradient(900px 400px at 50% 0%, rgba(96,165,250,0.30), transparent 60%), linear-gradient(160deg,#04101c,#020610)", particle: "#a5c9ff", unlock: "bronze", material: "Sapphire · Node Grid", shape: "Network Orb & Rings" },
-  influencer: { grad: "radial-gradient(900px 400px at 40% 0%, rgba(236,72,153,0.32), transparent 60%), linear-gradient(160deg,#1a061a,#0a020f)", particle: "#ffb2df", unlock: "legend", material: "Neon Rose Chrome", shape: "Broadcast Wave Star" },
-  creator:    { grad: "radial-gradient(900px 400px at 60% 0%, rgba(251,146,60,0.32), transparent 60%), linear-gradient(160deg,#1a0d05,#0a0402)", particle: "#ffcf9a", unlock: "gold", material: "Copper Fire · Prism Base", shape: "Flame Spire Sculpture" },
-  seo:        { grad: "radial-gradient(900px 400px at 40% 0%, rgba(74,222,128,0.30), transparent 60%), linear-gradient(160deg,#04180d,#01090a)", particle: "#b9ffd1", unlock: "silver", material: "Malachite · Chrome Ring", shape: "Ranking Ladder Compass" },
-  support:    { grad: "radial-gradient(900px 400px at 50% 0%, rgba(56,189,248,0.30), transparent 60%), linear-gradient(160deg,#04121a,#020810)", particle: "#a6e6ff", unlock: "bronze", material: "Sky Crystal · Steel Halo", shape: "Guardian Halo Shield" },
-  user:       { grad: "radial-gradient(900px 400px at 50% 0%, rgba(148,163,184,0.28), transparent 60%), linear-gradient(160deg,#0e1319,#04070a)", particle: "#e2e8f0", unlock: "starter", material: "Silver Frost · Etched Base", shape: "First-Step Star Trophy" },
+  developer:  { grad: "radial-gradient(900px 400px at 20% 0%, rgba(34,211,238,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#7defff", unlock: "diamond", material: "Cyan Crystal · Circuit Base", shape: "Hexagonal Chip Trophy" },
+  reseller:   { grad: "radial-gradient(900px 400px at 80% 0%, rgba(251,191,36,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#ffe28a", unlock: "gold", material: "24k Gold · Onyx Plinth", shape: "Growth Diamond Cup" },
+  franchise:  { grad: "radial-gradient(900px 400px at 40% 0%, rgba(244,114,182,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#ffb0d4", unlock: "elite", material: "Rose Gold · Wax Crest", shape: "Regal Shield Standard" },
+  author:     { grad: "radial-gradient(900px 400px at 60% 0%, rgba(167,139,250,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#d9c9ff", unlock: "silver", material: "Amethyst · Ink Marble", shape: "Feathered Quill Obelisk" },
+  vendor:     { grad: "radial-gradient(900px 400px at 30% 0%, rgba(52,211,153,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#8affd0", unlock: "silver", material: "Emerald Glass · Marble", shape: "Storefront Arch Cup" },
+  affiliate:  { grad: "radial-gradient(900px 400px at 50% 0%, rgba(96,165,250,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#a5c9ff", unlock: "bronze", material: "Sapphire · Node Grid", shape: "Network Orb & Rings" },
+  influencer: { grad: "radial-gradient(900px 400px at 40% 0%, rgba(236,72,153,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#ffb2df", unlock: "legend", material: "Neon Rose Chrome", shape: "Broadcast Wave Star" },
+  creator:    { grad: "radial-gradient(900px 400px at 60% 0%, rgba(251,146,60,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#ffcf9a", unlock: "gold", material: "Copper Fire · Prism Base", shape: "Flame Spire Sculpture" },
+  seo:        { grad: "radial-gradient(900px 400px at 40% 0%, rgba(74,222,128,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#b9ffd1", unlock: "silver", material: "Malachite · Chrome Ring", shape: "Ranking Ladder Compass" },
+  support:    { grad: "radial-gradient(900px 400px at 50% 0%, rgba(56,189,248,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#a6e6ff", unlock: "bronze", material: "Sky Crystal · Steel Halo", shape: "Guardian Halo Shield" },
+  user:       { grad: "radial-gradient(900px 400px at 50% 0%, rgba(148,163,184,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)", particle: "#e2e8f0", unlock: "starter", material: "Silver Frost · Etched Base", shape: "First-Step Star Trophy" },
 };
 
 export const Route = createFileRoute("/_authenticated/trophy-gallery")({
@@ -183,7 +183,7 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
       </div>
 
       <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
-        style={{ borderColor: `${role.accent}33`, background: "rgba(0,0,0,0.35)" }}>
+        style={{ borderColor: `${role.accent}33`, background: "rgba(0,0,0,0.14)" }}>
         <div className="flex items-center gap-1.5 text-[11px] text-foreground/60">
           <Trophy className="h-3.5 w-3.5" style={{ color: role.accent }} />
           {role.awardStyle}

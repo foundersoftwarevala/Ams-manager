@@ -175,7 +175,7 @@ export function MuseumShowcase({ showcase }: { showcase: ShowcaseDef }) {
 
       {mode === "tabletop" && (
         <div className="rounded-3xl border border-border/60 p-4"
-          style={{ background: "linear-gradient(180deg, rgba(60,40,24,0.35), rgba(10,8,6,0.6))" }}>
+          style={{ background: "linear-gradient(180deg, rgba(60,40,24,0.14), rgba(10,8,6,0.6))" }}>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {visible.map((role) => (
               <MuseumStage key={role.slug} {...stageFor(role, 300)} onExpand={() => setFullscreenSlug(role.slug)} />

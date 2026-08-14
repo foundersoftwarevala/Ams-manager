@@ -174,7 +174,7 @@ export function EngineDashboard({
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="sticky top-0 z-10 border-b border-border/60 bg-[oklch(0.2_0.032_260)] backdrop-blur text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+              <tr className="sticky top-0 z-10 border-b border-border/60 bg-surface-elevated backdrop-blur text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                 <th scope="col" className="w-10 px-3 py-2 text-left">
                   <Checkbox
                     checked={filtered.length > 0 && selected.size === filtered.length}

@@ -189,7 +189,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
 
       {/* actions */}
       <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
-        style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.35)" }}>
+        style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.14)" }}>
         <div className="text-[11px] font-mono text-foreground/60">
           Passport · <span style={{ color: stage.bg.accent }}>{stage.passportMotif}</span>
         </div>

@@ -358,9 +358,9 @@ function LockedStage({ piece, height }: { piece: CollectionPiece; height: number
         loading="lazy"
         className="h-full w-full object-contain blur-[10px] brightness-[0.3] saturate-[0.4]"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,5,10,0.35),rgba(3,5,10,0.75))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,5,10,0.14),rgba(3,5,10,0.75))]" />
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 p-3">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-black/50 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/70">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/70">
           <Lock className="h-3 w-3" /> Locked · {piece.stage.rarity}
         </span>
         <SVMicroMark accent={piece.stage.hue} />

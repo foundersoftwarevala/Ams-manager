@@ -176,7 +176,7 @@ function MissionCard({ m }: { m: Mission }) {
       <div className="flex flex-wrap gap-1.5 text-[11px]">
         {m.rewards.xp > 0 && <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">+{m.rewards.xp} XP</span>}
         {m.rewards.coins > 0 && <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-accent-amber border border-yellow-500/30">+{m.rewards.coins} coins</span>}
-        {m.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-purple-500/10 text-accent-pink border border-purple-500/30">+{m.rewards.tokens} tokens</span>}
+        {m.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-primary/12 text-primary-glow border border-primary/30">+{m.rewards.tokens} tokens</span>}
         {m.rewards.awardIds.length > 0 && <span className="px-2 py-0.5 rounded bg-legendary/10 text-legendary border border-legendary/30">{m.rewards.awardIds.length} award{m.rewards.awardIds.length > 1 ? "s" : ""}</span>}
       </div>
 
