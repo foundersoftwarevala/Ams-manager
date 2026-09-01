@@ -349,7 +349,7 @@ function LockedStage({ piece, height }: { piece: CollectionPiece; height: number
       style={{
         height,
         background:
-          "radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,0.06), transparent 65%), linear-gradient(180deg, #06080e 0%, #0a0e17 60%, #04060b 100%)",
+          "radial-gradient(120% 80% at 50% -10%, color-mix(in oklab, white 8%, transparent), transparent 65%), linear-gradient(180deg, color-mix(in oklab, var(--card) 80%, black) 0%, color-mix(in oklab, var(--background) 88%, black) 100%)",
       }}
     >
       <img
