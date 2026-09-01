@@ -241,6 +241,32 @@ export function MuseumStage({
           </div>
         )}
 
+        {/* holographic display glass */}
+        <div className="holo-glass pointer-events-none absolute inset-0" aria-hidden />
+
+        {/* mirrored pedestal reflection */}
+        {mounted && (
+          <div
+            className="stage-reflection pointer-events-none absolute left-1/2 -translate-x-1/2"
+            aria-hidden
+            style={{ bottom: 6, width: height * 0.6, height: height * 0.3 }}
+          >
+            <img src={src} alt="" aria-hidden loading="lazy" decoding="async"
+              className="h-full w-full object-contain object-top" />
+          </div>
+        )}
+
+        {/* caustic light pool */}
+        <div
+          className="caustic-pool pointer-events-none absolute bottom-6 left-1/2 h-7 -translate-x-1/2 rounded-full"
+          aria-hidden
+          style={{
+            width: height * 0.52,
+            background: `radial-gradient(closest-side, ${accent}88, transparent 74%)`,
+            filter: "blur(12px)",
+          }}
+        />
+
         {/* reflection floor + plinth */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0" style={{ height: height * 0.3 }}>
           <div className="absolute inset-x-0 bottom-0 h-full"
