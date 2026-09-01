@@ -128,17 +128,38 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
       </div>
 
       {/* Trophy display */}
-      <div className="relative z-10 flex h-64 items-center justify-center">
+      <div className="stage-3d relative z-10 flex h-64 items-center justify-center">
+        <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
         <div
-          className="absolute bottom-6 h-6 w-56 rounded-full blur-[6px]"
-          style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary) 60%, transparent), transparent)" }}
+          className="caustic-pool absolute bottom-6 left-1/2 h-7 w-56 rounded-full blur-[10px]"
+          style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary-glow) 60%, transparent), transparent 74%)" }}
         />
-        <img
-          src={TROPHY[role.slug]}
-          alt={`${role.name} luxury trophy`}
-          className={`h-56 w-56 object-contain trophy-float drop-shadow-[0_12px_30px_color-mix(in_oklab,var(--color-primary)_55%,transparent)] ${pulse ? "trophy-unlock" : ""}`}
-        />
+        <div className="stage-3d-object relative">
+          <img
+            src={TROPHY[role.slug]}
+            alt={`${role.name} luxury trophy`}
+            className={`h-56 w-56 object-contain trophy-float drop-shadow-[0_18px_38px_color-mix(in_oklab,black_75%,transparent)] ${pulse ? "trophy-unlock" : ""}`}
+            style={{ filter: "drop-shadow(0 0 26px color-mix(in oklab, var(--color-primary) 40%, transparent)) contrast(1.06) saturate(1.05)" }}
+          />
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div
+              className="specular-sweep absolute inset-y-[-20%] left-0 w-1/3"
+              style={{
+                background: "linear-gradient(100deg, transparent, color-mix(in oklab, white 40%, transparent), transparent)",
+                mixBlendMode: "screen",
+                filter: "blur(2px)",
+              }}
+            />
+          </div>
+        </div>
+        <div
+          className="stage-reflection pointer-events-none absolute bottom-1 left-1/2 h-20 w-56 -translate-x-1/2"
+          aria-hidden
+        >
+          <img src={TROPHY[role.slug]} alt="" aria-hidden className="h-full w-full object-contain object-top" />
+        </div>
       </div>
+
 
       {/* engraved nameplate */}
       <div className="relative z-10 mx-5 mb-3 overflow-hidden rounded-md border border-primary/35 bg-primary/8">

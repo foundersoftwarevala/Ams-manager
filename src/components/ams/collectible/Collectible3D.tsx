@@ -99,19 +99,41 @@ export function Collectible3D({
   const animate = !reducedMotion && visible;
   const doSpin = spin && animate;
 
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [engaged, setEngaged] = useState(false);
+
+  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (reducedMotion) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    setEngaged(true);
+    setTilt({ x: px * 26, y: py * 18 });
+  }
+  function handlePointerLeave() {
+    setEngaged(false);
+    setTilt({ x: 0, y: 0 });
+  }
+
   return (
     <div
       ref={wrapRef}
-      className="object-3d relative w-full overflow-hidden rounded-t-xl border-b border-border/70"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      data-engaged={engaged}
+      className="object-3d stage-3d relative w-full overflow-hidden rounded-t-xl border-b border-border/70"
       style={{
         height,
-        perspective: "1200px",
         background: `
-          radial-gradient(70% 55% at 50% 10%, color-mix(in oklab, white 9%, transparent), transparent 72%),
-          linear-gradient(180deg, color-mix(in oklab, var(--card) 72%, black), color-mix(in oklab, var(--background) 82%, black))
+          radial-gradient(70% 55% at 50% 8%, color-mix(in oklab, white 12%, transparent), transparent 72%),
+          radial-gradient(90% 60% at 50% 108%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 70%),
+          linear-gradient(180deg, color-mix(in oklab, var(--card) 78%, black), color-mix(in oklab, var(--background) 86%, black))
         `,
-        boxShadow: "inset 0 1px 0 color-mix(in oklab, white 10%, transparent)",
+        boxShadow: "inset 0 1px 0 color-mix(in oklab, white 12%, transparent)",
         contain: "content",
+        // @ts-expect-error CSS custom props
+        "--rx": tilt.x,
+        "--ry": tilt.y,
       }}
     >
       {!inView ? (
@@ -121,23 +143,25 @@ export function Collectible3D({
         </div>
       ) : (
         <>
+          {/* volumetric key light */}
           <div
-            className="pointer-events-none absolute inset-x-[18%] top-0 h-2/3 opacity-55"
+            className="pointer-events-none absolute inset-x-[14%] top-0 h-3/4 opacity-60"
             style={{
-              background: "radial-gradient(ellipse at 50% 0%, color-mix(in oklab, white 18%, transparent), transparent 65%)",
+              background: "radial-gradient(ellipse at 50% 0%, color-mix(in oklab, white 22%, transparent), transparent 66%)",
               mixBlendMode: "screen",
             }}
           />
+          {/* holographic display glass */}
+          <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
 
           <div className="relative h-full w-full flex items-center justify-center">
             <div
-              className="relative"
+              className="stage-3d-object relative"
               style={{
-                transformStyle: "preserve-3d",
                 animation: doSpin ? "collectible-spin 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none",
                 width: height * 0.78,
                 height: height * 0.94,
-                willChange: doSpin ? "transform" : undefined,
+                willChange: doSpin || engaged ? "transform" : undefined,
               }}
             >
               <img
@@ -149,31 +173,73 @@ export function Collectible3D({
                 height={1024}
                 className="h-full w-full object-contain"
                 style={{
-                  filter: "drop-shadow(0 24px 28px color-mix(in oklab, black 72%, transparent)) contrast(1.06)",
+                  filter:
+                    "drop-shadow(0 30px 34px color-mix(in oklab, black 78%, transparent)) drop-shadow(0 0 26px color-mix(in oklab, var(--color-primary) 34%, transparent)) contrast(1.08) saturate(1.05)",
+                }}
+              />
+              {/* rim light hugging the silhouette */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(60% 50% at 22% 18%, color-mix(in oklab, white 26%, transparent), transparent 62%)",
+                  mixBlendMode: "screen",
                 }}
               />
               {animate && (
-                <div
-                  className="pointer-events-none absolute inset-0 trophy-shine"
-                  style={{
-                    background: "linear-gradient(115deg, transparent 42%, color-mix(in oklab, white 28%, transparent) 50%, transparent 58%)",
-                    mixBlendMode: "screen",
-                  }}
-                />
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div
+                    className="absolute inset-y-[-20%] left-0 w-1/3 specular-sweep"
+                    style={{
+                      background:
+                        "linear-gradient(100deg, transparent, color-mix(in oklab, white 42%, transparent), transparent)",
+                      mixBlendMode: "screen",
+                      filter: "blur(2px)",
+                    }}
+                  />
+                </div>
               )}
             </div>
 
+            {/* mirrored pedestal reflection */}
             <div
-              className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-6 h-6 rounded-full"
+              className="stage-reflection pointer-events-none absolute left-1/2 -translate-x-1/2"
+              aria-hidden
+              style={{ bottom: 2, width: height * 0.78, height: height * 0.36, marginLeft: 0, transformOrigin: "center" }}
+            >
+              <img
+                src={src}
+                alt=""
+                aria-hidden
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-contain object-top"
+              />
+            </div>
+
+            {/* caustic light pool */}
+            <div
+              className="caustic-pool pointer-events-none absolute left-1/2 bottom-5 h-7 rounded-full"
               style={{
-                width: height * 0.5,
-                background: "radial-gradient(closest-side, color-mix(in oklab, white 20%, transparent), transparent 72%)",
-                filter: "blur(10px)",
+                width: height * 0.58,
+                background:
+                  "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary-glow) 55%, transparent), transparent 74%)",
+                filter: "blur(12px)",
+              }}
+            />
+            {/* contact shadow */}
+            <div
+              className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-6 h-3 rounded-full"
+              style={{
+                width: height * 0.34,
+                background: "radial-gradient(closest-side, oklch(0 0 0 / 0.75), transparent 76%)",
+                filter: "blur(6px)",
               }}
             />
           </div>
         </>
       )}
+
 
       {/* Software Vala museum case + brand marks */}
       <MuseumCase accent={accent} />

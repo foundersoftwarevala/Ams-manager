@@ -460,6 +460,70 @@ html, body { color-scheme: dark; }
 .collectible-rim { animation: collectible-rim 12s linear infinite; }
 .collectible-spot { animation: collectible-spot 4s ease-in-out infinite; }
 
+/* ================================================================
+ * ULTRA-PREMIUM COLLECTIBLE STAGE ("unicorn" grade 3D presentation)
+ * Real perspective, pointer parallax, specular sweep, caustic floor.
+ * ================================================================ */
+.stage-3d {
+  perspective: 1400px;
+  perspective-origin: 50% 35%;
+  transform-style: preserve-3d;
+}
+.stage-3d-object {
+  transform-style: preserve-3d;
+  transform:
+    rotateX(calc(var(--ry, 0) * -1deg))
+    rotateY(calc(var(--rx, 0) * 1deg))
+    translateZ(0);
+  transition: transform 420ms var(--ease-enterprise, cubic-bezier(0.22,0.61,0.36,1));
+}
+.stage-3d[data-engaged="true"] .stage-3d-object { transition: transform 90ms linear; }
+
+/* Mirrored floor reflection of the object */
+.stage-reflection {
+  transform: scaleY(-1) translateZ(0);
+  -webkit-mask-image: linear-gradient(to bottom, oklch(0 0 0 / 0.45), transparent 62%);
+  mask-image: linear-gradient(to bottom, oklch(0 0 0 / 0.45), transparent 62%);
+  filter: blur(1.2px) saturate(0.85);
+  opacity: 0.32;
+}
+
+/* Slow specular sweep across polished material */
+@keyframes specular-sweep {
+  0%   { transform: translateX(-140%) rotate(8deg); opacity: 0; }
+  12%  { opacity: 0.85; }
+  50%  { opacity: 0.55; }
+  88%  { opacity: 0; }
+  100% { transform: translateX(240%) rotate(8deg); opacity: 0; }
+}
+.specular-sweep { animation: specular-sweep 7.5s cubic-bezier(0.3,0,0.2,1) infinite; }
+
+/* Caustic light pooling on the pedestal */
+@keyframes caustic-breathe {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleX(1); }
+  50%      { opacity: 0.75; transform: translateX(-50%) scaleX(1.12); }
+}
+.caustic-pool { animation: caustic-breathe 5.2s ease-in-out infinite; }
+
+/* Holographic micro-grid on the display glass */
+@keyframes holo-drift {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, -40px 40px; }
+}
+.holo-glass {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--color-primary-glow) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-primary-glow) 12%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  animation: holo-drift 18s linear infinite;
+  opacity: 0.25;
+}
+
+[data-reduced-motion="true"] .specular-sweep,
+[data-reduced-motion="true"] .caustic-pool,
+[data-reduced-motion="true"] .holo-glass { animation: none; }
+
+
 
 /* ================================================================
  * ENTERPRISE MOTION SYSTEM
