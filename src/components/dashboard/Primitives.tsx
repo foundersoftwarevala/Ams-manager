@@ -30,14 +30,14 @@ export function StatCard({
     legendary: "rarity-legendary",
   };
   return (
-    <div className="surface-card motion-card p-4 flex items-start justify-between gap-3 group">
+    <div className="dashboard-card motion-card p-4 flex items-start justify-between gap-3 group">
       <div className="min-w-0">
         <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{label}</div>
         <div className="mt-1 text-2xl font-bold tabular-nums">{value}</div>
         {sub && <div className="text-xs text-muted-foreground mt-1">{sub}</div>}
         {trend && <div className="text-[10px] mt-2 text-success">▲ {trend}</div>}
       </div>
-      <div className={cn("h-10 w-10 rounded-lg flex items-center justify-center bg-card/60", accentMap[accent])}>
+      <div className={cn("icon3d h-10 w-10 rounded-lg flex items-center justify-center", accentMap[accent])}>
         {icon}
       </div>
     </div>

@@ -345,6 +345,37 @@ html, body { color-scheme: dark; }
   }
 }
 
+/* Shared high-density dashboard surfaces: blue hierarchy, crisp rails, no flat blocks. */
+@utility dashboard-card {
+  position: relative;
+  background-image:
+    linear-gradient(145deg, color-mix(in oklab, var(--color-primary) 12%, transparent), transparent 46%),
+    linear-gradient(180deg, color-mix(in oklab, var(--color-surface-elevated) 92%, var(--color-primary)), var(--color-card));
+  border: 1px solid color-mix(in oklab, var(--color-primary) 24%, var(--color-border));
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.08) inset,
+    0 18px 36px -24px oklch(0 0 0 / 0.72),
+    0 0 22px -16px color-mix(in oklab, var(--color-primary) 60%, transparent);
+  transition: box-shadow 260ms var(--ease-enterprise, ease), border-color 260ms ease, transform 260ms ease;
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-primary-glow) 48%, var(--color-border));
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.12) inset,
+      0 26px 48px -26px oklch(0 0 0 / 0.78),
+      0 0 28px -12px color-mix(in oklab, var(--color-primary) 72%, transparent);
+  }
+}
+
+@utility dashboard-table {
+  position: relative;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface-elevated) 92%, var(--color-primary)), var(--color-card));
+  border: 1px solid color-mix(in oklab, var(--color-primary) 24%, var(--color-border));
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 0 0 oklch(1 0 0 / 0.08) inset, 0 24px 50px -30px oklch(0 0 0 / 0.72);
+  & tbody tr:hover { background-color: color-mix(in oklab, var(--color-primary) 10%, transparent); }
+}
+
 /* Dimensional treatment for achievement/identity objects (trophies, badges, ranks). */
 @utility object-3d {
   background-image:
