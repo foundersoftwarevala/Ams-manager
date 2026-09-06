@@ -275,7 +275,7 @@ function HallCard({ title, icon, entries, emptyHint, subtitle }: { title: string
 
 function Card({ title, icon, children, fill }: { title: string; icon: React.ReactNode; children: React.ReactNode; fill?: boolean }) {
   return (
-    <div className={cn("surface-card p-4", fill && "h-full")}>
+    <div className={cn("dashboard-card p-4", fill && "h-full")}>
       <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
         {icon}<span className="uppercase tracking-wider">{title}</span>
       </div>

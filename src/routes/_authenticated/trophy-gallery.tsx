@@ -4,6 +4,8 @@ import { Trophy, Volume2, Sparkles } from "lucide-react";
 import { ROLES } from "@/lib/ams/roles";
 import { playUnlock, type UnlockPreset } from "@/lib/ams/trophy-sounds";
 import { PageHeader } from "@/components/ams/shared/PageHeader";
+import { MuseumStage } from "@/components/ams/museum/MuseumStage";
+import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 
 import affiliate from "@/assets/trophies/affiliate.png";
 import author from "@/assets/trophies/author.png";
@@ -80,13 +82,9 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
   const theme = ROLE_THEME[role.slug] ?? ROLE_THEME.user;
   const [tierIdx, setTierIdx] = useState(role.trophies.length - 1);
   const tier = role.trophies[tierIdx];
-  const [pulse, setPulse] = useState(false);
 
   function play() {
     playUnlock(theme.unlock);
-    setPulse(false);
-    requestAnimationFrame(() => setPulse(true));
-    setTimeout(() => setPulse(false), 2400);
   }
 
   return (
@@ -127,37 +125,21 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
         </span>
       </div>
 
-      {/* Trophy display */}
-      <div className="stage-3d relative z-10 flex h-64 items-center justify-center">
-        <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
-        <div
-          className="caustic-pool absolute bottom-6 left-1/2 h-7 w-56 rounded-full blur-[10px]"
-          style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary-glow) 60%, transparent), transparent 74%)" }}
+      {/* Museum-grade trophy stage */}
+      <div className="relative z-10 px-3 pb-3">
+        <MuseumStage
+          src={TROPHY[role.slug]}
+          filename={`${role.slug}-trophy.png`}
+          accent={role.accent}
+          label={`${role.passportPrefix} · ${tier.label} Trophy`}
+          environment={ROLE_ENVIRONMENT[role.slug]}
+          material={theme.material}
+          height={280}
+          chrome="compact"
+          unlockKind={theme.unlock === "gold" || theme.unlock === "elite" ? "rankUp" : "trophy"}
+          unlockTitle={`${role.name} ${tier.label} Trophy Unveiled`}
+          unlockSubtitle={`${theme.material} · ${theme.shape}`}
         />
-        <div className="stage-3d-object relative">
-          <img
-            src={TROPHY[role.slug]}
-            alt={`${role.name} luxury trophy`}
-            className={`h-56 w-56 object-contain trophy-float drop-shadow-[0_18px_38px_color-mix(in_oklab,black_75%,transparent)] ${pulse ? "trophy-unlock" : ""}`}
-            style={{ filter: "drop-shadow(0 0 26px color-mix(in oklab, var(--color-primary) 40%, transparent)) contrast(1.06) saturate(1.05)" }}
-          />
-          <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div
-              className="specular-sweep absolute inset-y-[-20%] left-0 w-1/3"
-              style={{
-                background: "linear-gradient(100deg, transparent, color-mix(in oklab, white 40%, transparent), transparent)",
-                mixBlendMode: "screen",
-                filter: "blur(2px)",
-              }}
-            />
-          </div>
-        </div>
-        <div
-          className="stage-reflection pointer-events-none absolute bottom-1 left-1/2 h-20 w-56 -translate-x-1/2"
-          aria-hidden
-        >
-          <img src={TROPHY[role.slug]} alt="" aria-hidden className="h-full w-full object-contain object-top" />
-        </div>
       </div>
 
 

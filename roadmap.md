@@ -1,0 +1,3 @@
+- [ ] Extend museum-grade 3D stages to remaining Collectible Vault screens and trophy preview stages.
+- [ ] Align AMS dashboard cards, tables, and trophy cards with the premium blue 7D hierarchy.
+- [ ] Verify responsive behavior and current build output.

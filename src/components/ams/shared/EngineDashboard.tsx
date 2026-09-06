@@ -109,7 +109,7 @@ export function EngineDashboard({
       {/* KPI grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
         {kpis.map((k) => (
-          <div key={k.label} className="surface-card motion-card motion-fade p-4">
+          <div key={k.label} className="dashboard-card motion-card motion-fade p-4">
             <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">{k.label}</div>
             <div className="mt-1 flex items-baseline gap-2">
               <div className="text-2xl font-bold tracking-tight" style={{ color: k.accent }}>{k.value}</div>
@@ -170,7 +170,7 @@ export function EngineDashboard({
       </div>
 
       {/* Table */}
-      <div className="surface-card overflow-hidden">
+      <div className="dashboard-table overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
