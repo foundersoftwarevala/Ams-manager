@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { CreditCard } from "lucide-react";
 import { ROLES } from "@/lib/ams/roles";
 import { ROLE_MEMBERSHIP } from "@/lib/ams/role-assets";
-import { Collectible3D } from "@/components/ams/collectible/Collectible3D";
+import { MuseumStage } from "@/components/ams/museum/MuseumStage";
+import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { RoleFilter, type RoleFilterValue } from "@/components/ams/collectible/RoleFilter";
 
 export const Route = createFileRoute("/_authenticated/membership-vault")({
@@ -50,20 +51,22 @@ function Page() {
           return (
             <article
               key={role.slug}
-              className="rounded-2xl border border-border/60 bg-card overflow-hidden"
+              className="dashboard-card overflow-hidden"
             >
-              <Collectible3D
+              <MuseumStage
                 src={img}
                 filename={`${role.slug}-membership.png`}
                 accent={role.accent}
                 label={`${role.passportPrefix} · Member`}
-                height={340}
-                showUnlock
+                environment={ROLE_ENVIRONMENT[role.slug]}
+                material="Anodised metal · Membership display"
+                height={320}
+                chrome="compact"
                 unlockKind="badge"
                 unlockTitle={`${role.name} Membership Activated`}
                 unlockSubtitle={role.motto}
               />
-              <div className="p-4">
+              <div className="border-t border-border/60 bg-surface/45 p-4">
                 <div className="text-lg font-semibold text-foreground">{role.name}</div>
                 <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
                   {role.archetype} · Premium Member
