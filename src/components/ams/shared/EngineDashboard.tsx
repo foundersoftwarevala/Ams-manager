@@ -130,7 +130,7 @@ export function EngineDashboard({
       {extraPanels}
 
       {/* Filter + search bar */}
-      <div className="surface-card p-3 flex flex-wrap items-center gap-2">
+      <div className="dashboard-card p-3 flex flex-wrap items-center gap-2">
         <div className="relative flex-1 min-w-[220px] max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search…" className="pl-9 h-9 bg-muted/30" />

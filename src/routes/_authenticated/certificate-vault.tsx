@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { useMemo, useState } from "react";
 import { ScrollText } from "lucide-react";
-import { Collectible3D } from "@/components/ams/collectible/Collectible3D";
+import { MuseumStage } from "@/components/ams/museum/MuseumStage";
+import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { RoleFilter, type RoleFilterValue } from "@/components/ams/collectible/RoleFilter";
 import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 import { CertificateQR } from "@/components/ams/collectible/CertificateQR";
@@ -58,19 +59,21 @@ function Page() {
         {visible.map((role) => {
           const identity = certificateIdentity(role);
           return (
-            <article key={role.slug} className="rounded-2xl border border-border/60 bg-card overflow-hidden">
-              <Collectible3D
+            <article key={role.slug} className="dashboard-card overflow-hidden">
+              <MuseumStage
                 src={ROLE_CERTIFICATE[role.slug]}
                 filename={`${role.slug}-certificate.png`}
                 accent={role.accent}
                 label={`${identity.number} · Certificate`}
-                height={340}
-                showUnlock
+                environment={ROLE_ENVIRONMENT[role.slug]}
+                material="Cotton paper & gold foil · Certificate display"
+                height={320}
+                chrome="compact"
                 unlockKind="achievement"
                 unlockTitle={`${role.name} Certificate Issued`}
                 unlockSubtitle={identity.title}
               />
-              <div className="p-4 space-y-3">
+              <div className="border-t border-border/60 bg-surface/45 p-4 space-y-3">
                 <div>
                   <div className="text-lg font-semibold text-foreground">{role.name}</div>
                   <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>

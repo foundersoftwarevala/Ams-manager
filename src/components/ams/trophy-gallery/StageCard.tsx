@@ -77,7 +77,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
       ref={cardRef}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="relative rounded-2xl border overflow-hidden group"
+      className="dashboard-card stage-3d relative overflow-hidden group"
       style={{
         background: stage.bg.gradient,
         borderColor: `${stage.bg.accent}55`,
@@ -124,11 +124,12 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
 
       {/* trophy stage */}
       <div className="relative z-10 h-64 flex items-center justify-center px-4">
+        <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
         {/* presentation pedestal */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 h-6 w-56 rounded-full"
           style={{ background: `radial-gradient(closest-side, ${stage.bg.glow}, transparent)`, filter: "blur(6px)" }} />
         <div
-          className="relative trophy-float"
+          className="stage-3d-object relative trophy-float"
           style={{
             transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 200ms ease-out",
@@ -141,6 +142,9 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
             id={`stage-${stage.n}`}
             className={`h-56 w-56 ${celebrateOn ? "trophy-unlock" : ""}`}
           />
+          <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+            <div className="specular-sweep absolute inset-y-[-20%] left-0 w-1/3 bg-gradient-to-r from-transparent via-primary-foreground/30 to-transparent blur-sm" />
+          </div>
         </div>
       </div>
 
