@@ -1848,6 +1848,16 @@ export type Database = {
         Args: { _conv: string; _user: string }
         Returns: boolean
       }
+      unlock_trophy: {
+        Args: {
+          _achievement_name: string
+          _achievement_slug: string
+          _trophy_name: string
+          _trophy_slug: string
+          _xp_reward?: number
+        }
+        Returns: Json
+      }
     }
     Enums: {
       ams_chat_channel:
