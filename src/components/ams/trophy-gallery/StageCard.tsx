@@ -5,6 +5,8 @@ import { playUnlock } from "@/lib/ams/trophy-sounds";
 import type { DeveloperStage } from "@/lib/ams/developer-stages";
 import { useCelebration, type CelebrateKind } from "@/components/ams/effects/Celebration";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useServerFn } from "@tanstack/react-start";
+import { unlockTrophy } from "@/lib/ams/trophy-unlock.functions";
 
 const UNLOCK_TO_KIND: Record<string, CelebrateKind> = {
   starter: "achievement",
@@ -29,6 +31,8 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
   const cardRef = useRef<HTMLDivElement | null>(null);
   const reducedMotion = useReducedMotion();
   const { celebrate, soundOn } = useCelebration();
+  const unlockTrophyFn = useServerFn(unlockTrophy);
+  const [unlocking, setUnlocking] = useState(false);
 
   const sparkleCount = reducedMotion ? 0 : 14;
   const sparkles = useMemo(
@@ -55,19 +59,34 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
   }
   function onLeave() { setTilt({ x: 0, y: 0 }); }
 
-  function unlock() {
-    if (soundOn) {
-      try { playUnlock(stage.unlock); } catch { /* noop */ }
+  async function unlock() {
+    if (unlocking) return;
+    setUnlocking(true);
+    const base = stage.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    try {
+      const result = await unlockTrophyFn({ data: {
+        trophySlug: `progression-${base}`,
+        trophyName: `${stage.title} Trophy`,
+        achievementSlug: `progression-${base}-achievement`,
+        achievementName: `${stage.title} Achievement`,
+        xpReward: 100 * stage.n,
+      } });
+      if (!result.newly_unlocked) return;
+      if (soundOn) {
+        try { playUnlock(stage.unlock); } catch { /* noop */ }
+      }
+      setCelebrateOn(false);
+      requestAnimationFrame(() => setCelebrateOn(true));
+      setTimeout(() => setCelebrateOn(false), 2600);
+      celebrate({
+        kind: UNLOCK_TO_KIND[stage.unlock] ?? "achievement",
+        title: `${stage.title} Unlocked`,
+        subtitle: `${stage.material} · ${stage.theme}`,
+        xp: result.xp_awarded,
+      });
+    } finally {
+      setUnlocking(false);
     }
-    setCelebrateOn(false);
-    requestAnimationFrame(() => setCelebrateOn(true));
-    setTimeout(() => setCelebrateOn(false), 2600);
-    celebrate({
-      kind: UNLOCK_TO_KIND[stage.unlock] ?? "achievement",
-      title: `${stage.title} Unlocked`,
-      subtitle: `${stage.material} · ${stage.theme}`,
-      xp: 100 * stage.n,
-    });
   }
 
   const [rFrom, rTo] = stage.ribbon;
@@ -207,7 +226,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
           }}
         >
           <Volume2 className="h-3.5 w-3.5" />
-          Preview unlock
+          {unlocking ? "Unlocking…" : "Unlock trophy"}
         </button>
       </div>
     </div>

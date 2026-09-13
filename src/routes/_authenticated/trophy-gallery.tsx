@@ -139,6 +139,8 @@ function TrophyDisplayCase({ role }: { role: (typeof ROLES)[number] }) {
           unlockKind={theme.unlock === "gold" || theme.unlock === "elite" ? "rankUp" : "trophy"}
           unlockTitle={`${role.name} ${tier.label} Trophy Unveiled`}
           unlockSubtitle={`${theme.material} · ${theme.shape}`}
+              unlockSlug={`${role.slug}-${tier.key}`}
+              rewardXp={100 * (tierIdx + 1)}
         />
       </div>
 
