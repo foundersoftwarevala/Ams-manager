@@ -5,6 +5,9 @@ import {
 } from "lucide-react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCelebration, type CelebrateKind } from "@/components/ams/effects/Celebration";
+import { useServerFn } from "@tanstack/react-start";
+import { useQueryClient } from "@tanstack/react-query";
+import { unlockTrophy } from "@/lib/ams/trophy-unlock.functions";
 import { SVMicroMark, SVSeal, svCollectionNumber } from "@/components/ams/brand/SVMark";
 import {
   FACE_VIEWS, LIGHTING_PRESETS, PREVIEW_MODES, SCALE_PRESETS,
@@ -34,6 +37,8 @@ export interface MuseumStageProps {
   unlockKind?: CelebrateKind;
   unlockTitle?: string;
   unlockSubtitle?: string;
+  unlockSlug?: string;
+  rewardXp?: number;
   onExpand?: () => void;
   eager?: boolean;
 }
@@ -49,9 +54,12 @@ export function MuseumStage({
   src, filename, accent, label, environment, material,
   height = 380, chrome = "compact",
   unlockKind = "trophy", unlockTitle, unlockSubtitle, onExpand, eager = false,
+  unlockSlug, rewardXp = 100,
 }: MuseumStageProps) {
   const reducedMotion = useReducedMotion();
   const { celebrate } = useCelebration();
+  const unlock = useServerFn(unlockTrophy);
+  const queryClient = useQueryClient();
 
   const [mode, setMode] = useState<PreviewMode>("auto");
   const [face, setFace] = useState<FaceView>("front");
@@ -62,6 +70,9 @@ export function MuseumStage({
   const [drag, setDrag] = useState({ x: 0, y: 0 });
   const [mounted, setMounted] = useState(eager);
   const [visible, setVisible] = useState(eager);
+  const [unlocking, setUnlocking] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [unlockError, setUnlockError] = useState<string | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const pointer = useRef<{ x: number; y: number } | null>(null);
 
@@ -137,6 +148,41 @@ export function MuseumStage({
   }
 
   const explode = mode === "explosion";
+
+  async function reveal() {
+    if (unlocking || unlocked) return;
+    setUnlocking(true);
+    setUnlockError(null);
+    const base = (unlockSlug ?? filename.replace(/\.[^.]+$/, ""))
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    try {
+      const result = await unlock({
+        data: {
+          trophySlug: `${base}-trophy`,
+          trophyName: unlockTitle ?? label,
+          achievementSlug: `${base}-achievement`,
+          achievementName: unlockTitle ?? label,
+          xpReward: rewardXp,
+        },
+      });
+      setUnlocked(true);
+      await queryClient.invalidateQueries({ queryKey: ["command-center"] });
+      if (result.newly_unlocked) {
+        celebrate({
+          kind: unlockKind,
+          title: unlockTitle ?? label,
+          subtitle: unlockSubtitle,
+          xp: result.xp_awarded,
+        });
+      }
+    } catch (error) {
+      setUnlockError(error instanceof Error ? error.message : "Unlock failed");
+    } finally {
+      setUnlocking(false);
+    }
+  }
 
   return (
     <div
@@ -375,17 +421,23 @@ export function MuseumStage({
       )}
 
       {(unlockTitle || unlockSubtitle) && (
+        <div className={cn(
+          "absolute z-10 flex items-center gap-2",
+          chrome === "full" ? "right-3 top-24" : "bottom-8 right-3",
+        )}>
         <button
           type="button"
-          onClick={() => celebrate({ kind: unlockKind, title: unlockTitle ?? label, subtitle: unlockSubtitle })}
+          onClick={reveal}
+          disabled={unlocking || unlocked}
           className={cn(
-            "absolute z-10 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition hover:brightness-110",
-            chrome === "full" ? "right-3 top-24" : "bottom-8 right-3",
+            "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-75",
           )}
           style={{ background: `linear-gradient(135deg, ${accent}, ${accent}aa)`, color: "#0b0f1a", boxShadow: `0 0 22px -6px ${accent}` }}
         >
-          <Sparkles className="h-3.5 w-3.5" /> Reveal
+          <Sparkles className="h-3.5 w-3.5" /> {unlocking ? "Unlocking…" : unlocked ? "Unlocked" : "Unlock"}
         </button>
+        {unlockError && <span className="max-w-40 text-right text-[10px] text-destructive">{unlockError}</span>}
+        </div>
       )}
     </div>
   );

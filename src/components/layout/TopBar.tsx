@@ -18,8 +18,8 @@ const ICON_BTN =
 
 export function TopBar({ onOpenMenu }: { onOpenMenu?: () => void }) {
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="h-16 flex items-center gap-2 px-3 sm:px-5">
+    <header className="sticky top-0 z-30 overflow-x-clip border-b border-border bg-background/80 backdrop-blur-xl">
+      <div className="flex h-16 min-w-0 items-center gap-2 px-3 sm:px-5">
         <button
           onClick={onOpenMenu}
           aria-label="Open menu"
@@ -30,7 +30,7 @@ export function TopBar({ onOpenMenu }: { onOpenMenu?: () => void }) {
 
         <RouteHistoryArrows className="shrink-0" />
 
-        <div className="relative flex-1 max-w-xl">
+        <div className="relative min-w-0 flex-1 max-w-xl">
           <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             placeholder="Search achievements, users, rewards…"
@@ -41,7 +41,7 @@ export function TopBar({ onOpenMenu }: { onOpenMenu?: () => void }) {
           </kbd>
         </div>
 
-        <div className="ml-auto flex items-center gap-1.5">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5">
           <Link to="/hall-of-fame" aria-label="Achievement alerts" className={ICON_BTN}>
             <Trophy className="h-[18px] w-[18px]" />
             <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-primary ring-2 ring-background" />
